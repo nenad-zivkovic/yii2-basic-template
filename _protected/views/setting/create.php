@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 
 /* @var $model app\models\Setting */
