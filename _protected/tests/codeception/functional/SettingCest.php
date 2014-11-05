@@ -55,6 +55,7 @@ class SettingCest
     /**
      * =========================================================================
      * Test if admin can use setting page.
+     * =========================================================================
      *
      * @param \codeception\FunctionalTester $I
      * 
