@@ -22,7 +22,7 @@ class m141022_115922_create_session_table extends \yii\db\Migration
         }
         else
         {
-            // mssql, oracle, sqlite, cubrid, 
+            // mssql, oracle, sqlite, cubrid
             $dataType = 'BLOB';
         }
 
