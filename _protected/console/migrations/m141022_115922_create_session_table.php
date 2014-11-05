@@ -16,20 +16,20 @@ class m141022_115922_create_session_table extends \yii\db\Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
             $dataType = 'LONGBLOB';
         }
-        elseif ($this->db->driverName === 'postgresql') 
+        elseif ($this->db->driverName === 'pgsql') 
         {
             $dataType = 'BYTEA';
         }
         else
         {
-            // mssql
+            // mssql, oracle, sqlite, cubrid, 
             $dataType = 'BLOB';
         }
 
         $this->createTable('{{%session}}', [
             'id' => 'CHAR(64) NOT NULL PRIMARY KEY',
             'expire' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'data' => 'LONGBLOB NOT NULL',
+            'data' => ''.$dataType.' NOT NULL',
         ], $tableOptions);
     }
 
@@ -38,3 +38,4 @@ class m141022_115922_create_session_table extends \yii\db\Migration
         $this->dropTable('{{%session}}');
     }
 }
+

@@ -1,7 +1,9 @@
 <?php
 namespace app\models;
 
+use nenad\passwordStrength\StrengthValidator;
 use app\rbac\helpers\RbacHelper;
+use app\models\Setting;
 use app\models\User;
 use yii\base\Model;
 use Yii;
@@ -25,6 +27,18 @@ class SignupForm extends Model
      */
     public function rules()
     {
+        // get setting value for 'Force Strong Password'
+        $fsp = Setting::get(Setting::FORCE_STRONG_PASSWORD);
+
+        // use StrengthValidator rule (presets are located in: widgets/passwordStrenght/presets.php)
+        $strong = [['password'], StrengthValidator::className(), 'preset'=>'normal', 
+                                                                 'userAttribute'=>'username'];
+        // use normal yii rule
+        $normal = ['password', 'string', 'min' => 6];
+
+        // if 'Force Strong Password' is set to 'YES' use $strong rule, else usee $normal rule
+        $passwordStrenghtRule = ($fsp) ? $strong : $normal;
+
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
@@ -39,7 +53,8 @@ class SignupForm extends Model
                 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            // dinamicaly decide which password rule to use
+            $passwordStrenghtRule,
 
             // on default scenario, user status is set to active
             ['status', 'default', 'value' => User::STATUS_ACTIVE, 'on' => 'default'],
