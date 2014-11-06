@@ -107,4 +107,5 @@ Features
 - The Creator role (super admin) can use system settings that comes with template.
 - Theming is supported out of box.
 - Administrators and The Creator can update their account.
+- Password strength validation and strength meter.
 - Code is heavily commented out.
