@@ -11,8 +11,9 @@ namespace app\widgets;
 
 /**
  * -----------------------------------------------------------------------------
- * Alert widget renders a message from session flash. All flash messages are displayed
- * in the sequence they were assigned using setFlash. You can set message as following:
+ * Alert widget renders a message from session flash. 
+ * All flash messages are displayed in the sequence they were assigned 
+ * using setFlash. You can set message as following:
  *
  * ```php
  * \Yii::$app->getSession()->setFlash('error', 'This is the message');
