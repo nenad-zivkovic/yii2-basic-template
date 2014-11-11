@@ -77,7 +77,7 @@ class m141022_115912_create_rbac_tables extends Migration
 
         $this->createTable($authManager->assignmentTable, [
             'item_name' => Schema::TYPE_STRING . '(64) NOT NULL',
-            'user_id' => Schema::TYPE_STRING . '(64) NOT NULL',
+            'user_id' => Schema::TYPE_INTEGER . ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER,
             'PRIMARY KEY (item_name, user_id)',
             'FOREIGN KEY (item_name) REFERENCES ' . $authManager->itemTable . ' (name) 

@@ -401,7 +401,7 @@ class SiteController extends Controller
      * @param  string $token Account activation token.
      *
      * @throws BadRequestHttpException
-     * 
+     *
      * @return string          login view.
      * _________________________________________________________________________
      */
