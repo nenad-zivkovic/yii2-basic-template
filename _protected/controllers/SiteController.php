@@ -2,7 +2,6 @@
 namespace app\controllers;
 
 use app\models\LoginForm;
-use app\models\User;
 use app\models\Setting;
 use app\models\AccountActivation;
 use app\models\PasswordResetRequestForm;
@@ -250,7 +249,9 @@ class SiteController extends Controller
      * Resets password.
      * =========================================================================
      *
-     * @param  string  $token  Password reset token.
+     * @param  string $token Password reset token.
+     *
+     * @throws BadRequestHttpException
      *
      * @return mixed           homepage|resetPassword view
      * _________________________________________________________________________
@@ -397,8 +398,10 @@ class SiteController extends Controller
      * Activates the user account so he can log in into system.
      * =========================================================================
      *
-     * @param  string  $token  Account activation token.
+     * @param  string $token Account activation token.
      *
+     * @throws BadRequestHttpException
+     * 
      * @return string          login view.
      * _________________________________________________________________________
      */

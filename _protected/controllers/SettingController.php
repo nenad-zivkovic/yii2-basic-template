@@ -1,7 +1,6 @@
 <?php
 namespace app\controllers;
 
-use app\controllers\AppController;
 use app\models\Setting;
 use yii\data\Pagination;
 use yii\data\Sort;
