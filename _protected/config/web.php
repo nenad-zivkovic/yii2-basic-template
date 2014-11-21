@@ -33,7 +33,8 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'session' => [
-            'class' => 'yii\web\DbSession',
+            'class' => 'yii\web\Session',
+            'savePath' => '@app/runtime/session'
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
@@ -64,13 +65,13 @@ $config = [
         //         'yii\bootstrap\BootstrapAsset' => [
         //             'sourcePath' => null,   // do not use file from our server
         //             'css' => [
-        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css']
+        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css']
         //         ],
         //         // use bootstrap js from CDN
         //         'yii\bootstrap\BootstrapPluginAsset' => [
         //             'sourcePath' => null,   // do not use file from our server
         //             'js' => [
-        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js']
+        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js']
         //         ],
         //         // use jquery from CDN
         //         'yii\web\JqueryAsset' => [
