@@ -3,7 +3,6 @@ namespace app\models;
 
 use nenad\passwordStrength\StrengthValidator;
 use app\rbac\helpers\RbacHelper;
-use app\models\User;
 use yii\base\Model;
 use Yii;
 
