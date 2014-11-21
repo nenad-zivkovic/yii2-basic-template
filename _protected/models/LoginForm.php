@@ -12,9 +12,9 @@ use Yii;
 class LoginForm extends Model
 {
     public $username;
-    public $email;
     public $password;
     public $rememberMe = true;
+    public $status; // whether the user is active or not
 
     /**
      * @var \app\models\User
@@ -29,13 +29,12 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            ['email', 'email'],
-            ['password', 'validatePassword'],
+            // username and password are both required
+            [['username', 'password'], 'required'],
+            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // username and password are required on default scenario
-            [['username', 'password'], 'required', 'on' => 'default'],
-            // email and password are required on 'lwe' (login with email) scenario
-            [['email', 'password'], 'required', 'on' => 'lwe'],
+            // password is validated by validatePassword()
+            ['password', 'validatePassword'],
         ];
     }
 
@@ -54,14 +53,11 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) 
         {
-            $user = $this->user;
+            $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) 
             {
-                // if scenario is 'lwe' we use email, otherwise we use username
-                $field = ($this->scenario === 'lwe') ? 'email' : 'username' ;
-
-                $this->addError($attribute, 'Incorrect '.$field.' or password.');
+                $this->addError($attribute, 'Incorrect username or password.');
             }
         }
     }
@@ -76,9 +72,20 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) 
+        if ($this->validate())
         {
-            return Yii::$app->user->login($this->user, $this->rememberMe ? 3600 * 24 * 30 : 0);
+            // get user status if he exists, otherwise assign not active as default
+            $this->status = ($user = $this->getUser()) ? $user->status : User::STATUS_NOT_ACTIVE;
+
+            // if we have active and valid user log him in
+            if ($this->status === User::STATUS_ACTIVE) 
+            {
+                return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
+            } 
+            else 
+            {
+                return false; // user is not active
+            }
         } 
         else 
         {
@@ -100,45 +107,9 @@ class LoginForm extends Model
     {
         if ($this->_user === false) 
         {
-            // in 'lwe' scenario we find user by email, otherwise by username
-            if ($this->scenario === 'lwe')
-            {
-                $this->_user = User::findByEmail($this->email);
-            } 
-            else 
-            {
-                $this->_user = User::findByUsername($this->username);
-            } 
+            $this->_user = User::findByUsername($this->username); 
         }
 
         return $this->_user;
-    }
-    
-    /**
-     * =========================================================================
-     * Checks to see if the given user has NOT activated his account yet.
-     * We first check if user exists in our system, 
-     * and then did he activated his account.
-     * =========================================================================
-     *
-     * @return boolean  True if not activated.
-     * _________________________________________________________________________
-     */
-    public function notActivated()
-    {
-        // if scenario is 'lwe' we will use email as our username, otherwise we use username
-        $username = ($this->scenario === 'lwe') ? $this->email : $this->username;
-
-        if ($user = User::userExists($username, $this->password, $this->scenario))
-        {
-            if ($user->status === User::STATUS_NOT_ACTIVE)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

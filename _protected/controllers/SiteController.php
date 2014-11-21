@@ -1,8 +1,8 @@
 <?php
 namespace app\controllers;
 
+use app\models\User;
 use app\models\LoginForm;
-use app\models\Setting;
 use app\models\AccountActivation;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
@@ -161,11 +161,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        // get setting value for 'Login With Email'
-        $lwe = Setting::get(Setting::LOGIN_WITH_EMAIL);
-
-        // if 'L.W.E.' value is 'YES' we instantiate LoginForm in 'lwe' scenario
-        $model = $lwe ? new LoginForm(['scenario' => 'lwe']) : new LoginForm();
+        $model = new LoginForm();
 
         // now we can try to log in the user
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
@@ -173,7 +169,7 @@ class SiteController extends Controller
             return $this->goBack();
         }
         // user couldn't be logged in, because he has not activated his account
-        elseif($model->notActivated())
+        elseif($model->status === User::STATUS_NOT_ACTIVE)
         {
             // if his account is not activated, he will have to activate it first
             Yii::$app->session->setFlash('error', 
@@ -302,11 +298,7 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {  
-        // get setting value for 'Registration Needs Activation'
-        $rna = Setting::get(Setting::REGISTRATION_NEEDS_ACTIVATION);
-
-        // if 'R.N.A.' value is 'YES', we instantiate SignupForm in 'rna' scenario
-        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
+        $model = new SignupForm();
 
         // collect and validate user data
         if ($model->load(Yii::$app->request->post()) && $model->validate())
@@ -314,21 +306,21 @@ class SiteController extends Controller
             // try to save user data in database
             if ($user = $model->signup()) 
             {
-                // activation is needed, use signupWithActivation()
-                if ($rna) 
-                {
-                    $this->signupWithActivation($model, $user);
-                }
-                // activation is not needed, try to login user 
-                else 
+                // if user is active he will be logged in automatically ( this will be first user )
+                if ($user->status === User::STATUS_ACTIVE)
                 {
                     if (Yii::$app->getUser()->login($user)) 
                     {
                         return $this->goHome();
                     }
                 }
+                // activation is needed, use signupWithActivation()
+                else 
+                {
+                    $this->signupWithActivation($model, $user);
 
-                return $this->refresh();             
+                    return $this->refresh();
+                }            
             }
             // user could not be saved in database
             else

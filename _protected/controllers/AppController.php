@@ -28,15 +28,6 @@ class AppController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'controllers' => ['setting'],
-                        'actions' => ['index','create', 'update', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->can('theCreator');
-                        },
-                    ],
-                    [
                         'controllers' => ['user'],
                         'actions' => ['index', 'update', 'delete', 'update-role'],
                         'allow' => true,

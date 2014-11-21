@@ -50,12 +50,6 @@ AppAsset::register($this);
                                 'id'=>Yii::$app->user->id]];
                 $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
             }
-
-            // display Settings only to you
-            if (Yii::$app->user->can('theCreator')) 
-            {
-                $menuItems[] = ['label' => 'Settings', 'url' => ['/setting/index']];
-            }
             
             // display Signup and Login pages to guests of the site
             if (Yii::$app->user->isGuest) 

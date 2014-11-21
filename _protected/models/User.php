@@ -148,23 +148,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * =========================================================================
-     * Finds user by email.
-     * =========================================================================
-     *
-     * @param  string  $email
-     *
-     * @return static|null 
-     * _________________________________________________________________________
-     */
-    public static function findByEmail($email)
-    {
-        return static::findOne(['email' => $email, 'status' => self::STATUS_ACTIVE]);
-    }    
+        return static::findOne(['username' => $username]);
+    }  
     
     /**
      * =========================================================================
@@ -231,44 +216,6 @@ class User extends ActiveRecord implements IdentityInterface
             'account_activation_token' => $token,
             'status' => self::STATUS_NOT_ACTIVE,
         ]);
-    }    
-
-    /**
-     * =========================================================================
-     * Checks to see if the given user exists in our database.
-     * If LoginForm scenario is set to lwe (login with email), we need to check 
-     * user's email and password combo, otherwise we check username/password.
-     * =========================================================================
-     *
-     * @param  string  $username  Username|email provided via login form.
-     * 
-     * @param  string  $password  Password provided via login form.
-     *
-     * @param  string  $scenario  LoginForm model scenario.
-     *
-     * @return object|boolean     User|false
-     * _________________________________________________________________________
-     */
-    public static function userExists($username, $password, $scenario)
-    {
-        // if scenario is 'lwe', we need to check email, otherwise we check username
-        $field = ($scenario === 'lwe') ? 'email' : 'username';
-        
-        if ($user = static::findOne([$field => $username]))
-        {
-            if ($user->validatePassword($password))
-            {
-                return $user;
-            }
-            else
-            {
-                return false; // invalid password
-            }            
-        }
-        else
-        {
-            return false; // invalid username|email
-        }
     }
 
 //------------------------------------------------------------------------------------------------//
@@ -425,5 +372,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function removeAccountActivationToken()
     {
         $this->account_activation_token = null;
+    }
+
+    /**
+     * Checks to see if there are any users in our system.
+     * If there are no users that means that the one that is trying to sign up 
+     * is the first.
+     */
+    public function firstUser()
+    {
+        $usersCount = static::find()->count();
+
+        return ($usersCount == 0) ? true : false ;
     }
 }
