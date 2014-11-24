@@ -63,7 +63,7 @@ class UserController extends AppController
                 $role->save(); 
             }  
 
-            return $this->redirect('index');      
+            return $this->redirect(['view', 'id' => $user->id]);      
         } 
         else 
         {
@@ -108,7 +108,7 @@ class UserController extends AppController
             $user->save(false);
             $role->save(false); 
             
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $user->id]);
         }
         else 
         {
