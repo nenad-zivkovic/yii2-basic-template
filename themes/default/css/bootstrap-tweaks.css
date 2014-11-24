@@ -25,3 +25,28 @@
 .navbar-inverse .navbar-nav > .active > a {
     color: #00cc34;
 }
+
+/*-- Breadcrumb tweaks --*/
+
+.breadcrumb {
+    background-color: #e7e7e7;
+}
+
+/*-- Table tweaks --*/
+
+/* change background color of odd table rows */
+.table-striped > tbody > tr:nth-child(2n+1) > td, 
+.table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #fbfbfb;
+}
+
+/* change background color of even table rows */
+.table-striped > tbody > tr:nth-child(2n) > td, 
+.table-striped > tbody > tr:nth-child(2n) > th {
+    background-color: #fbfbfb;
+}
+
+.table-bordered > thead > tr > th {
+    background-color: #e7e7e7;
+}

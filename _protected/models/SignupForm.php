@@ -16,6 +16,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $status;
 
     /**
      * =========================================================================
@@ -38,11 +39,41 @@ class SignupForm extends Model
                 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
-            // password strength rule is determined by StrengthValidator 
-            // presets are located in: vendor/nenad/yii2-password-strength/presets.php
-            [['password'], StrengthValidator::className(), 'preset'=>'normal']
+            // use passwordStrengthRule() method to determine password strength
+            $this->passwordStrengthRule(),
+
+            // on default scenario, user status is set to active
+            ['status', 'default', 'value' => User::STATUS_ACTIVE, 'on' => 'default'],
+            // status is set to not active on rna (registration needs activation) scenario
+            ['status', 'default', 'value' => User::STATUS_NOT_ACTIVE, 'on' => 'rna'],
+            // status has to be integer value in the given range. Check User model.
+            ['status', 'in', 'range' => [User::STATUS_NOT_ACTIVE, User::STATUS_ACTIVE]]
         ];
     }
+
+    /**
+     * =========================================================================
+     * Set password rule based on our setting value (Force Strong Password).
+     * =========================================================================
+     * 
+     * @return array  Password strength rule
+     * _________________________________________________________________________
+     */
+    private function passwordStrengthRule()
+    {
+        // get setting value for 'Force Strong Password'
+        $fsp = Yii::$app->params['fsp'];
+
+        // password strength rule is determined by StrengthValidator 
+        // presets are located in: vendor/nenad/yii2-password-strength/presets.php
+        $strong = [['password'], StrengthValidator::className(), 'preset'=>'normal'];
+
+        // use normal yii rule
+        $normal = ['password', 'string', 'min' => 6];
+
+        // if 'Force Strong Password' is set to 'true' use $strong rule, else use $normal rule
+        return ($fsp) ? $strong : $normal;
+    }    
 
     /**
      * =========================================================================
@@ -60,22 +91,18 @@ class SignupForm extends Model
 
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->password = $this->password;
+        $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->status = $this->status;
 
-        // first user in system will be activated automatically ( this should be You )
-        if ($user->firstUser()) 
-        {
-            $user->status = User::STATUS_ACTIVE;
-        } 
-        else 
+        // if scenario is "rna" we will generate account activation token
+        if ($this->scenario === 'rna')
         {
             $user->generateAccountActivationToken();
-            $user->status = User::STATUS_NOT_ACTIVE;
         }
-        
+
         // if user is saved and role is assigned return user object
-        return $user->save() && RbacHelper::assignRole($user->getId(), $user->status) ? $user : null;
+        return $user->save() && RbacHelper::assignRole($user->getId()) ? $user : null;
     }
 
     /**

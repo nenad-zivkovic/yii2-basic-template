@@ -29,7 +29,7 @@ class AppController extends Controller
                 'rules' => [
                     [
                         'controllers' => ['user'],
-                        'actions' => ['index', 'update', 'delete', 'update-role'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'update-role'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {

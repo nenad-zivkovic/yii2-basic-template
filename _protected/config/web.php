@@ -13,11 +13,19 @@ $config = [
             // - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
-        // you can set your theme here (template comes with 'default' and 'cool')
+        // you can set your theme here (template comes with 'default' and 'slate')
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/cool/views'],
-                'baseUrl' => '@web/themes/cool',
+                'pathMap' => ['@app/views' => '@webroot/themes/slate/views'],
+                'baseUrl' => '@web/themes/slate',
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                // we will use bootstrap css from our theme
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null, // do not use yii default one
+                ],
             ],
         ],
         'cache' => [
@@ -29,8 +37,8 @@ $config = [
             'showScriptName' => false,
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'app\models\UserIdentity',
+            'enableAutoLogin' => false,
         ],
         'session' => [
             'class' => 'yii\web\Session',
@@ -58,31 +66,6 @@ $config = [
                 ],
             ],
         ],
-        // if you decide to use bootstrap and jquery from CDN, uncomment assetManager settings
-        // 'assetManager' => [
-        //     'bundles' => [
-        //         // use bootstrap css from CDN
-        //         'yii\bootstrap\BootstrapAsset' => [
-        //             'sourcePath' => null,   // do not use file from our server
-        //             'css' => [
-        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css']
-        //         ],
-        //         // use bootstrap js from CDN
-        //         'yii\bootstrap\BootstrapPluginAsset' => [
-        //             'sourcePath' => null,   // do not use file from our server
-        //             'js' => [
-        //                 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js']
-        //         ],
-        //         // use jquery from CDN
-        //         'yii\web\JqueryAsset' => [
-        //             'sourcePath' => null,   // do not use file from our server
-        //             'js' => [
-        //                 '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-        //             ]
-        //         ],
-        //     ],
-        // ],
-
         'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,

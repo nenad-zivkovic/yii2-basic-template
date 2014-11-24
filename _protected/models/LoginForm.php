@@ -12,9 +12,10 @@ use Yii;
 class LoginForm extends Model
 {
     public $username;
+    public $email;
     public $password;
     public $rememberMe = true;
-    public $status; // whether the user is active or not
+    public $status; // holds the information about user status
 
     /**
      * @var \app\models\User
@@ -29,12 +30,13 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+            ['email', 'email'],
             ['password', 'validatePassword'],
+            ['rememberMe', 'boolean'],
+            // username and password are required on default scenario
+            [['username', 'password'], 'required', 'on' => 'default'],
+            // email and password are required on 'lwe' (login with email) scenario
+            [['email', 'password'], 'required', 'on' => 'lwe'],
         ];
     }
 
@@ -53,11 +55,14 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) 
         {
-            $user = $this->getUser();
+            $user = $this->user;
 
             if (!$user || !$user->validatePassword($this->password)) 
             {
-                $this->addError($attribute, 'Incorrect username or password.');
+                // if scenario is 'lwe' we use email, otherwise we use username
+                $field = ($this->scenario === 'lwe') ? 'email' : 'username' ;
+
+                $this->addError($attribute, 'Incorrect '.$field.' or password.');
             }
         }
     }
@@ -107,7 +112,15 @@ class LoginForm extends Model
     {
         if ($this->_user === false) 
         {
-            $this->_user = User::findByUsername($this->username); 
+            // in 'lwe' scenario we find user by email, otherwise by username
+            if ($this->scenario === 'lwe')
+            {
+                $this->_user = User::findByEmail($this->email);
+            } 
+            else 
+            {
+                $this->_user = User::findByUsername($this->username);
+            } 
         }
 
         return $this->_user;

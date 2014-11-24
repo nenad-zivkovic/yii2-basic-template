@@ -10,6 +10,8 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+
+    background-color: #f6f6f6;
 }
 
 .wrap > .container {
@@ -102,20 +104,9 @@ div.required label:after {
     color: #e13431;
 }
 
-/*-- Settings display tweaks --*/
-
-.settings-view th {
-    width: 143px;
-}
-
-.settings-index th:last-child {
-    width: 122px;
-}
-
 /*-- User list display tweaks --*/
-
 .user-index td:last-child {
-    width: 173px;
+    width: 68px;
 }
 
 /*-- Css for nicer display of boolean yes/no values --*/
@@ -132,7 +123,7 @@ div.required label:after {
 
 /*-- Css for nicer display of user roles --*/
 
-.role-the-creator {
+.role-theCreator {
     font-weight: bold;
     color: black;
 }
@@ -142,12 +133,17 @@ div.required label:after {
     color: #c4a500;
 }
 
+.role-support {
+    font-weight: bold;
+    color: #009d00;
+}
+
 .role-member {
     font-weight: bold;
     color: #4c4cff;
 }
 
-.role-premium-member {
+.role-premium {
     font-weight: bold;
     color: #800080;
 }

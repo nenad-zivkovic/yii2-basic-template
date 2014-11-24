@@ -161,7 +161,11 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        // get setting value for 'Login With Email'
+        $lwe = Yii::$app->params['lwe'];
+
+        // if 'lwe' value is 'true' we instantiate LoginForm in 'lwe' scenario
+        $model = $lwe ? new LoginForm(['scenario' => 'lwe']) : new LoginForm();
 
         // now we can try to log in the user
         if ($model->load(Yii::$app->request->post()) && $model->login()) 
@@ -298,7 +302,11 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {  
-        $model = new SignupForm();
+        // get setting value for 'Registration Needs Activation'
+        $rna = Yii::$app->params['rna'];
+
+        // if 'rna' value is 'true', we instantiate SignupForm in 'rna' scenario
+        $model = $rna ? new SignupForm(['scenario' => 'rna']) : new SignupForm();
 
         // collect and validate user data
         if ($model->load(Yii::$app->request->post()) && $model->validate())

@@ -1,4 +1,4 @@
-@import url("bootstrap-tweaks.css");
+@import url("bootstrap.min.css");
 
 html,
 body {
@@ -10,31 +10,16 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
-
-    background: -webkit-linear-gradient(#cfcfcf, #ececec); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#cfcfcf, #ececec); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#cfcfcf, #ececec), repeat: none; /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#cfcfcf, #ececec); /* Standard syntax (must be last) */
 }
 
 .wrap > .container {
     padding: 70px 15px 20px;
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
 .footer {
     height: 60px;
-    background-color: #ececec;
-    border-top: 1px solid #ddd;
+    background-color: #272b30;
+    border-top: 1px solid #15171a;
     padding-top: 20px;
 }
 
@@ -107,39 +92,28 @@ div.required label:after {
     color: #e13431;
 }
 
-/*-- Settings display tweaks --*/
-
-.settings-view th {
-    width: 143px;
-}
-
-.settings-index th:last-child {
-    width: 122px;
-}
-
 /*-- User list display tweaks --*/
-
 .user-index td:last-child {
-    width: 173px;
+    width: 68px;
 }
 
 /*-- Css for nicer display of boolean yes/no values --*/
 
 .boolean-true {
     font-weight: bold;
-    color: green;
+    color: #00b100;
 }
 
 .boolean-false {
     font-weight: bold;
-    color: #e13431;
+    color: #cd211e;
 }
 
 /*-- Css for nicer display of user roles --*/
 
-.role-the-creator {
+.role-theCreator {
     font-weight: bold;
-    color: black;
+    color: #e7eaeb;
 }
 
 .role-admin {
@@ -147,14 +121,19 @@ div.required label:after {
     color: #c4a500;
 }
 
-.role-member {
+.role-support {
     font-weight: bold;
-    color: #4c4cff;
+    color: #009d00;
 }
 
-.role-premium-member {
+.role-member {
     font-weight: bold;
-    color: #800080;
+    color: #7373ff;
+}
+
+.role-premium {
+    font-weight: bold;
+    color: #b600b6;
 }
 
 /*-- Password strength --*/
@@ -162,4 +141,9 @@ div.required label:after {
 /* hide strength meter so we can fade it in nicely with jQuery */
 .nz-meter-container {
     display: none;
+}
+
+#form-signup table,
+#form-user table {
+    background-color: transparent;
 }

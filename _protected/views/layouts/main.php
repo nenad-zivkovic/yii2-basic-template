@@ -29,7 +29,7 @@ AppAsset::register($this);
                 'brandLabel' => 'My Company',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
+                    'class' => 'navbar-default navbar-fixed-top',
                 ],
             ]);
 
@@ -43,11 +43,9 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Contact', 'url' => ['/site/contact']];
             }
 
-            // display Account and Users to admin+ roles
+            // display Users to admin+ roles
             if (Yii::$app->user->can('admin'))
             {
-                $menuItems[] = ['label' => 'Account', 'url' => ['/user/update', 
-                                'id'=>Yii::$app->user->id]];
                 $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
             }
             
