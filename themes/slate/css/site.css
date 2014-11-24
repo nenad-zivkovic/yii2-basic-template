@@ -143,6 +143,7 @@ div.required label:after {
     display: none;
 }
 
+/* fix strength meter background display */
 #form-signup table,
 #form-user table {
     background-color: transparent;
