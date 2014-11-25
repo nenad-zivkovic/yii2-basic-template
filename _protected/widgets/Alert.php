@@ -9,8 +9,9 @@
 
 namespace app\widgets;
 
+use yii\bootstrap\Widget;
+
 /**
- * -----------------------------------------------------------------------------
  * Alert widget renders a message from session flash. 
  * All flash messages are displayed in the sequence they were assigned 
  * using setFlash. You can set message as following:
@@ -29,9 +30,8 @@ namespace app\widgets;
  *
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @author Alexander Makarov <sam@rmcreative.ru>
- * -----------------------------------------------------------------------------
  */
-class Alert extends \yii\bootstrap\Widget
+class Alert extends Widget
 {
     /**
      * @var array the alert types configuration for the flash messages.
@@ -52,7 +52,7 @@ class Alert extends \yii\bootstrap\Widget
      */
     public $closeButton = [];
 
-    public function init()
+    public function init ()
     {
         parent::init();
 
@@ -60,10 +60,14 @@ class Alert extends \yii\bootstrap\Widget
         $flashes = $session->getAllFlashes();
         $appendCss = isset($this->options['class']) ? ' ' . $this->options['class'] : '';
 
-        foreach ($flashes as $type => $data) {
-            if (isset($this->alertTypes[$type])) {
-                $data = (array) $data;
-                foreach ($data as $message) {
+        foreach ($flashes as $type => $data)
+        {
+            if (isset($this->alertTypes[$type]))
+            {
+                $data = (array)$data;
+
+                foreach ($data as $message)
+                {
                     /* initialize css class for each alert box */
                     $this->options['class'] = $this->alertTypes[$type] . $appendCss;
 

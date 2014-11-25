@@ -4,20 +4,17 @@ namespace tests\codeception\_pages;
 use yii\codeception\BasePage;
 
 /**
- * Represents contact page
- * @property \AcceptanceTester|\FunctionalTester $actor
+ * Represents Contact Page
+ * @package tests\codeception\_pages
  */
 class ContactPage extends BasePage
 {
     public $route = 'site/contact';
 
     /**
-     * =========================================================================
      * Method representing user submitting contact form.
-     * =========================================================================
      *
      * @param array $contactData
-     * _________________________________________________________________________
      */
     public function submit(array $contactData)
     {

@@ -6,9 +6,9 @@ use yii\base\Model;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * Class representing account activation.
- * -----------------------------------------------------------------------------
+ *
+ * @package app\models
  */
 class AccountActivation extends Model
 {
@@ -18,18 +18,14 @@ class AccountActivation extends Model
     private $_user;
 
     /**
-     * =========================================================================
      * Creates the user object given a token.
-     * =========================================================================
      *
-     * @param  string  $token                   Account activation token.
+     * @param  string $token  Account activation token.
      *
-     * @param  array   $config                  Name-value pairs that will be 
-     *                                          used to initialize the object
-     *                                          properties.
+     * @param  array  $config Name-value pairs that will be used to initialize
+     *                        the object properties.
      *
      * @throws \yii\base\InvalidParamException  If token is empty or not valid.
-     * _________________________________________________________________________
      */
     public function __construct($token, $config = [])
     {
@@ -47,14 +43,11 @@ class AccountActivation extends Model
 
         parent::__construct($config);
     }
-   
+
     /**
-     * =========================================================================
      * Activates account.
-     * =========================================================================
      *
-     * @return boolean  Whether the account was activated.
-     * _________________________________________________________________________
+     * @return bool Whether the account was activated.
      */
     public function activateAccount()
     {
@@ -67,12 +60,9 @@ class AccountActivation extends Model
     }
 
     /**
-     * =========================================================================
-     * Returns the username of the user who has activated account. 
-     * =========================================================================
+     * Returns the username of the user who has activated account.
      *
-     * @return string  Username.
-     * _________________________________________________________________________
+     * @return string
      */
     public function getUsername()
     {

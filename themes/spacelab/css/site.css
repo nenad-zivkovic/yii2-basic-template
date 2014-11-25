@@ -28,11 +28,6 @@ body {
     text-align: center;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
 .footer {
     height: 60px;
     background-color: #f5f5f5;
@@ -110,6 +105,7 @@ div.required label:after {
 }
 
 /*-- User list display tweaks --*/
+
 .user-index td:last-child {
     width: 68px;
 }

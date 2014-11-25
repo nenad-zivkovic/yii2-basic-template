@@ -4,38 +4,29 @@ namespace tests\codeception\acceptance;
 use tests\codeception\_pages\LoginPage;
 
 class LoginCest
-{   
+{
     /**
-     * =========================================================================
      * This method is called before each test method.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _before($event)
     {
     }
 
     /**
-     * =========================================================================
      * This method is called after each test method, even if test failed.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _after($event)
     {
     }
 
     /**
-     * =========================================================================
      * This method is called when test fails.
-     * =========================================================================
      *
      * @param \Codeception\Event\FailEvent $event
-     * _________________________________________________________________________
      */
     public function _fail($event)
     {
@@ -46,7 +37,7 @@ class LoginCest
      * Based on your system settings for 'Login With Email' it will 
      * run either testLoginWithEmail() or testLoginWithUsername method.
      * 
-     * @param  \codeception\AcceptanceTester $I
+     * @param  \Codeception\AcceptanceTester $I
      * 
      * @param  \Codeception\Scenario $scenario
      */
@@ -60,6 +51,8 @@ class LoginCest
 
     /**
      * Test if active user can login with email/password combo.
+     *
+     * @param $I
      */
     private function testLoginWithEmail($I)
     {
@@ -98,6 +91,8 @@ class LoginCest
 
     /**
      * Test if active user can login with username/password combo.
+     *
+     * @param $I
      */
     private function testLoginWithUsername($I)
     {
@@ -138,8 +133,8 @@ class LoginCest
      * We want to be sure that not active user can not login.
      * If he try to login, he should get error flash message.
      * 
-     * @param  \codeception\AcceptanceTester $I
-     * 
+     * @param  \Codeception\AcceptanceTester $I
+     *
      * @param  \Codeception\Scenario $scenario
      */
     public function testLoginNotActiveUser($I, $scenario)

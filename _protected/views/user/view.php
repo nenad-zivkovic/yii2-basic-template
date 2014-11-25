@@ -36,11 +36,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password_hash',
             [
                 'attribute'=>'status',
-                'value' => $model->statusName,
+                'value' => $model->getStatusName(),
             ],
             [
                 'attribute'=>'item_name',
-                'value' => $model->roleName,
+                'value' => $model->getRoleName(),
             ],
             //'auth_key',
             //'password_reset_token',

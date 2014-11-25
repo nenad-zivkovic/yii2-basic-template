@@ -7,19 +7,19 @@ use yii\filters\VerbFilter;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * AppController extends Controller and implements the behaviors() method
- * where you can specify the access control ( AC filter + RBAC) for 
+ * where you can specify the access control ( AC filter + RBAC) for
  * your controllers and their actions.
- * -----------------------------------------------------------------------------
+ *
+ * @package app\controllers
  */
 class AppController extends Controller
 {
     /**
-     * =========================================================================
-     * Returns a list of behaviors that this component should behave as. 
+     * Returns a list of behaviors that this component should behave as.
      * Here we use RBAC in combination with AccessControl filter.
-     * =========================================================================
+     *
+     * @return array
      */
     public function behaviors()
     {

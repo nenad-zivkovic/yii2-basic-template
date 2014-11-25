@@ -33,7 +33,6 @@ body {
     color: #999;
 }
 
-/* change hover color of main navigation links */
 .navbar-default .navbar-nav > li > a:hover
 {
     background-color: #363636;
@@ -63,11 +62,6 @@ body {
 
 .jumbotron {
     text-align: center;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
 }
 
 .footer {
@@ -147,6 +141,7 @@ div.required label:after {
 }
 
 /*-- User list display tweaks --*/
+
 .user-index td:last-child {
     width: 68px;
 }

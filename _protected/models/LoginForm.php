@@ -5,9 +5,9 @@ use yii\base\Model;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * LoginForm is the model behind the login form.
- * -----------------------------------------------------------------------------
+ *
+ * @package app\models
  */
 class LoginForm extends Model
 {
@@ -23,9 +23,9 @@ class LoginForm extends Model
     private $_user = false;
 
     /**
-     * =========================================================================
      * Returns the validation rules for attributes.
-     * =========================================================================
+     *
+     * @return array
      */
     public function rules()
     {
@@ -40,22 +40,19 @@ class LoginForm extends Model
         ];
     }
 
- /**
-     * =========================================================================
+    /**
      * Validates the password.
      * This method serves as the inline validation for password.
-     * =========================================================================
      *
-     * @param string  $attribute  The attribute currently being validated.
+     * @param string $attribute The attribute currently being validated.
      *
-     * @param array   $params     The additional name-value pairs.
-     * _________________________________________________________________________
+     * @param array  $params    The additional name-value pairs.
      */
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) 
         {
-            $user = $this->user;
+            $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) 
             {
@@ -68,12 +65,9 @@ class LoginForm extends Model
     }
 
     /**
-     * =========================================================================
      * Logs in a user using the provided username|email and password.
-     * =========================================================================
      *
-     * @return boolean  Whether the user is logged in successfully.
-     * _________________________________________________________________________
+     * @return bool Whether the user is logged in successfully.
      */
     public function login()
     {
@@ -99,14 +93,9 @@ class LoginForm extends Model
     }
 
     /**
-     * =========================================================================
-     * Finds user by username or email in 'lwe' scenario. 
-     * Since this is a getter method, we are using it inside our class 
-     * like a property: $this->user.
-     * =========================================================================
-     * 
-     * @return User|null
-     * _________________________________________________________________________
+     * Finds user by username or email in 'lwe' scenario.
+     *
+     * @return User|null|static
      */
     public function getUser()
     {

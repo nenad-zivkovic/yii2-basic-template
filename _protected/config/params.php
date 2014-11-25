@@ -7,18 +7,21 @@ return [
 
     /**
      * Registration Needs Activation.
+     *
      * If set to true users will have to activate their accounts using email account activation.
      */
     'rna' => false,
 
     /**
      * Login With Email.
+     *
      * If set to true users will have to login using email/password combo.
      */
     'lwe' => false, 
 
     /**
      * Force Strong Password.
+     *
      * If set to true users will have to use passwords with strength determined by StrengthValidator.
      */
     'fsp' => false,

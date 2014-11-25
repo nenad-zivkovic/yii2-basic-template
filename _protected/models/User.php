@@ -7,8 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use Yii;
 
 /**
- * ------------------------------------------------------------------------------
- * This is the model class extending UserIdentity.
+ * This is the user model class extending UserIdentity.
  * Here you can implement your custom user solutions.
  *
  * @property integer $id
@@ -21,9 +20,10 @@ use Yii;
  * @property string $account_activation_token
  * @property integer $created_at
  * @property integer $updated_at
- * 
+ *
  * @property Role $role
- * ------------------------------------------------------------------------------
+ *
+ * @package app\models
  */
 class User extends UserIdentity
 {
@@ -32,13 +32,16 @@ class User extends UserIdentity
     const STATUS_ACTIVE = 10;
 
     public $password;
+
+    /**
+     * @var \app\rbac\models\Role
+     */
     public $item_name;
 
     /**
-     * =========================================================================
      * Returns the validation rules for attributes.
-     * NOTE: We are using these rules when updating admin|The Creator account.
-     * =========================================================================
+     *
+     * @return array
      */
     public function rules()
     {
@@ -59,12 +62,9 @@ class User extends UserIdentity
     }
 
     /**
-     * =========================================================================
      * Set password rule based on our setting value (Force Strong Password).
-     * =========================================================================
-     * 
-     * @return array  Password strength rule
-     * _________________________________________________________________________
+     *
+     * @return array Password strength rule.
      */
     private function passwordStrengthRule()
     {
@@ -83,9 +83,9 @@ class User extends UserIdentity
     }
 
     /**
-     * =========================================================================
-     * Returns a list of behaviors that this component should behave as. 
-     * =========================================================================
+     * Returns a list of behaviors that this component should behave as.
+     *
+     * @return array
      */
     public function behaviors()
     {
@@ -95,7 +95,9 @@ class User extends UserIdentity
     }
 
     /**
-     * Relation with Role class. 
+     * Relation with Role model.
+     *
+     * @return \yii\db\ActiveQuery
      */
     public function getRole()
     {
@@ -104,7 +106,9 @@ class User extends UserIdentity
     }    
 
     /**
-     * @inheritdoc
+     * Returns the attribute labels.
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -124,14 +128,11 @@ class User extends UserIdentity
 //------------------------------------------------------------------------------------------------//
 
     /**
-     * =========================================================================
      * Finds user by username.
-     * =========================================================================
      *
-     * @param  string  $username
+     * @param  string $username
      *
-     * @return static|null 
-     * _________________________________________________________________________
+     * @return static|null
      */
     public static function findByUsername($username)
     {
@@ -139,14 +140,11 @@ class User extends UserIdentity
     }  
     
     /**
-     * =========================================================================
      * Finds user by email.
-     * =========================================================================
      *
-     * @param  string  $email
+     * @param  string $email
      *
-     * @return static|null 
-     * _________________________________________________________________________
+     * @return static|null
      */
     public static function findByEmail($email)
     {
@@ -154,14 +152,10 @@ class User extends UserIdentity
     } 
 
     /**
-     * =========================================================================
      * Finds user by password reset token.
-     * =========================================================================
      *
-     * @param  string  $token  Password reset token.
-     *
-     * @return static|null 
-     * _________________________________________________________________________
+     * @param  string $token Password reset token.
+     * @return null|static
      */
     public static function findByPasswordResetToken($token)
     {
@@ -177,14 +171,11 @@ class User extends UserIdentity
     }
 
     /**
-     * =========================================================================
      * Finds user by account activation token.
-     * =========================================================================
      *
-     * @param  string  $token  Account activation token.
+     * @param  string $token Account activation token.
      *
      * @return static|null
-     * _________________________________________________________________________
      */
     public static function findByAccountActivationToken($token)
     {
@@ -197,6 +188,57 @@ class User extends UserIdentity
 //------------------------------------------------------------------------------------------------//
 // HELPERS
 //------------------------------------------------------------------------------------------------//
+
+    /**
+     * Returns the user status in nice format.
+     *
+     * @param  null|integer $status Status integer value if sent to method.
+     *
+     * @return string               Nicely formatted status.
+     */
+    public function getStatusName($status = null)
+    {
+        $status = (empty($status)) ? $this->status : $status ;
+
+        if ($status === self::STATUS_DELETED)
+        {
+            return "Deleted";
+        }
+        elseif ($status === self::STATUS_NOT_ACTIVE)
+        {
+            return "Inactive";
+        }
+        else
+        {
+            return "Active";
+        }
+    }
+
+    /**
+     * Returns the array of possible user status values.
+     *
+     * @return array
+     */
+    public function statusList()
+    {
+        $statusArray = [
+            self::STATUS_ACTIVE     => 'Active',
+            self::STATUS_NOT_ACTIVE => 'Inactive',
+            self::STATUS_DELETED    => 'Deleted'
+        ];
+
+        return $statusArray;
+    }
+
+    /**
+     * Returns the role name ( item_name )
+     *
+     * @return string
+     */
+    public function getRoleName()
+    {
+        return $this->role->item_name;
+    }
 
     /**
      * Generates new password reset token.
@@ -217,9 +259,9 @@ class User extends UserIdentity
     /**
      * Finds out if password reset token is valid.
      * 
-     * @param  string  $token Password reset token.
+     * @param  string $token Password reset token.
      * 
-     * @return boolean        
+     * @return bool
      */
     public static function isPasswordResetTokenValid($token)
     {
@@ -251,56 +293,5 @@ class User extends UserIdentity
     public function removeAccountActivationToken()
     {
         $this->account_activation_token = null;
-    }
-
-    /**
-     * Returns the user status in nice format.
-     * 
-     * @param  null|integer $status Status integer value if sent to method.
-     * 
-     * @return string               Nicely formated status.
-     */
-    public function getStatusName($status = null)
-    {
-        $status = (empty($status)) ? $this->status : $status ;
-
-        if ($status === self::STATUS_DELETED)
-        {
-            return "Deleted";
-        } 
-        elseif ($status === self::STATUS_NOT_ACTIVE)
-        {
-            return "Inactive";
-        }
-        else
-        {
-            return "Active";
-        }        
-    }  
-
-    /**
-     * Returs the array of possible user status values.
-     * 
-     * @return array
-     */
-    public function statusList()
-    {
-        $statusArray = [
-            self::STATUS_ACTIVE     => 'Active',
-            self::STATUS_NOT_ACTIVE => 'Inactive',
-            self::STATUS_DELETED    => 'Deleted'
-        ];
-
-        return $statusArray;
-    }
-
-    /**
-     * Returns the role name ( item_name )
-     * 
-     * @return string
-     */
-    public function getRoleName()
-    {
-        return $this->role->item_name;
     }
 }

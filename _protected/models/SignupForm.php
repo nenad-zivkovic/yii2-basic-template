@@ -7,9 +7,9 @@ use yii\base\Model;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
- * Signup form.
- * -----------------------------------------------------------------------------
+ * Model representing  Signup Form.
+ *
+ * @package app\models
  */
 class SignupForm extends Model
 {
@@ -19,9 +19,9 @@ class SignupForm extends Model
     public $status;
 
     /**
-     * =========================================================================
      * Returns the validation rules for attributes.
-     * =========================================================================
+     *
+     * @return array
      */
     public function rules()
     {
@@ -52,12 +52,9 @@ class SignupForm extends Model
     }
 
     /**
-     * =========================================================================
      * Set password rule based on our setting value (Force Strong Password).
-     * =========================================================================
-     * 
-     * @return array  Password strength rule
-     * _________________________________________________________________________
+     *
+     * @return array Password strength rule
      */
     private function passwordStrengthRule()
     {
@@ -76,14 +73,11 @@ class SignupForm extends Model
     }    
 
     /**
-     * =========================================================================
-     * Signs up the user. 
-     * If scenario is set to "rna" (registration needs activation), this means 
+     * Signs up the user.
+     * If scenario is set to "rna" (registration needs activation), this means
      * that user need to activate his account using email confirmation method.
-     * =========================================================================
      *
-     * @return User|null              The saved model or null if saving fails.
-     * _________________________________________________________________________
+     * @return User|null The saved model or null if saving fails.
      */
     public function signup()
     {
@@ -106,14 +100,11 @@ class SignupForm extends Model
     }
 
     /**
-     * =========================================================================
      * Sends email to registered user with account activation link.
-     * =========================================================================
      *
-     * @param  object   $user  Registered user.
-     * 
-     * @return boolean         Whether the message has been sent successfully.
-     * _________________________________________________________________________
+     * @param  object $user Registered user.
+     *
+     * @return bool         Whether the message has been sent successfully.
      */
     public function sendAccountActivationEmail($user)
     {

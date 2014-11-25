@@ -10,12 +10,15 @@ use Yii;
 
 /**
  * UserController implements the CRUD actions for User model.
+ *
+ * @package app\controllers
  */
 class UserController extends AppController
 {
     /**
      * Lists all User models.
-     * @return mixed
+     *
+     * @return string
      */
     public function actionIndex()
     {
@@ -30,8 +33,12 @@ class UserController extends AppController
 
     /**
      * Displays a single User model.
-     * @param integer $id
-     * @return mixed
+     *
+     * @param  integer $id The user id.
+     *
+     * @return string
+     *
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
@@ -43,7 +50,8 @@ class UserController extends AppController
     /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     *
+     * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
@@ -77,8 +85,12 @@ class UserController extends AppController
     /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
+     *
+     * @param  integer $id The user id.
+     *
+     * @return string|\yii\web\Response
+     *
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -122,8 +134,12 @@ class UserController extends AppController
     /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     *
+     * @param  integer $id The user id.
+     *
+     * @return \yii\web\Response
+     *
+     * @throws NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -141,9 +157,12 @@ class UserController extends AppController
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     *
+     * @param  integer $id The user id.
+     *
+     * @return User The loaded model.
+     *
+     * @throws NotFoundHttpException
      */
     protected function findModel($id)
     {

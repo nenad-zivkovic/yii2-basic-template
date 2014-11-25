@@ -2,22 +2,19 @@
 namespace app\helpers;
 
 /**
- * -----------------------------------------------------------------------------
- * CssHelper class.
- * -----------------------------------------------------------------------------
+ * Css helper class.
+ *
+ * @package app\helpers
  */
 class CssHelper
 {
     /**
-     * =========================================================================
      * Returns the appropriate css class based on the value of user $status.
      * NOTE: used in user/index view.
-     * =========================================================================
      *
-     * @param  string  $status  User status.
+     * @param  string $status User status.
      *
-     * @return string           Css class.
-     * _________________________________________________________________________
+     * @return string         Css class.
      */
     public static function statusCss($status)
     {
@@ -32,15 +29,12 @@ class CssHelper
     }
 
     /**
-     * =========================================================================
      * Returns the appropriate css class based on the value of role $item_name.
      * NOTE: used in user/index view.
-     * =========================================================================
      *
-     * @param  string  $role  Role name.
+     * @param  string $role Role name.
      *
-     * @return string         Css class.
-     * _________________________________________________________________________
+     * @return string       Css class.
      */
     public static function roleCss($role)
     {

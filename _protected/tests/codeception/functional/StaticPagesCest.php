@@ -6,52 +6,40 @@ use tests\codeception\_pages\ContactPage;
 use Yii;
 
 class StaticPagesCest
-{   
+{
     /**
-     * =========================================================================
      * This method is called before each test method.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _before($event)
     {
     }
 
     /**
-     * =========================================================================
      * This method is called after each test method, even if test failed.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _after($event)
     {
     }
 
     /**
-     * =========================================================================
      * This method is called when test fails.
-     * =========================================================================
      *
      * @param \Codeception\Event\FailEvent $event
-     * _________________________________________________________________________
      */
     public function _fail($event)
     {
     }
-    
+
     /**
-     * =========================================================================
      * Test home page.
-     * =========================================================================
      *
-     * @param \codeception\FunctionalTester $I
-     * 
+     * @param \Codeception\FunctionalTester $I
+     *
      * @param \Codeception\Scenario $scenario
-     * _________________________________________________________________________
      */
     public function testHomePage($I, $scenario)
     {
@@ -64,14 +52,11 @@ class StaticPagesCest
     }
 
     /**
-     * =========================================================================
      * Test about page.
-     * =========================================================================
      *
-     * @param \codeception\FunctionalTester $I
-     * 
+     * @param \Codeception\FunctionalTester $I
+     *
      * @param \Codeception\Scenario $scenario
-     * _________________________________________________________________________
      */
     public function testAboutPage($I, $scenario)
     {
@@ -81,14 +66,11 @@ class StaticPagesCest
     }
 
     /**
-     * =========================================================================
      * Test contact page.
-     * =========================================================================
      *
-     * @param \codeception\FunctionalTester $I
-     * 
+     * @param \Codeception\FunctionalTester $I
+     *
      * @param \Codeception\Scenario $scenario
-     * _________________________________________________________________________
      */
     public function testContact($I, $scenario)
     {

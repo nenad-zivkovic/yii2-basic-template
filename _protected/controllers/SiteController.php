@@ -17,18 +17,18 @@ use yii\filters\AccessControl;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * Site controller.
- * It is responsible for displaying static pages, logging users in and out, 
- * signup and account activation, password reset.
- * -----------------------------------------------------------------------------
+ * It is responsible for displaying static pages, logging users in and out,
+ * sign up and account activation, password reset.
+ *
+ * @package app\controllers
  */
 class SiteController extends Controller
 {
     /**
-     * =========================================================================
-     * Returns a list of behaviors that this component should behave as. 
-     * =========================================================================
+     * Returns a list of behaviors that this component should behave as.
+     *
+     * @return array
      */
     public function behaviors()
     {
@@ -59,9 +59,9 @@ class SiteController extends Controller
     }
 
     /**
-     * ======================================================================
      * Declares external actions for the controller.
-     * ======================================================================
+     *
+     * @return array
      */
     public function actions()
     {
@@ -81,13 +81,10 @@ class SiteController extends Controller
 //------------------------------------------------------------------------------------------------//
 
     /**
-     * ======================================================================
-     * Displays the index (home) page. 
-     * Use it in case your home page contains static content.      
-     * ======================================================================
+     * Displays the index (home) page.
+     * Use it in case your home page contains static content.
      *
-     * @return mixed  index view.
-     * ______________________________________________________________________
+     * @return string
      */
     public function actionIndex()
     {
@@ -95,12 +92,9 @@ class SiteController extends Controller
     }
 
     /**
-     * ======================================================================
      * Displays the about static page.
-     * ======================================================================
      *
-     * @return mixed  about view.
-     * ______________________________________________________________________
+     * @return string
      */
     public function actionAbout()
     {
@@ -108,12 +102,9 @@ class SiteController extends Controller
     }
 
     /**
-     * ======================================================================
      * Displays the contact static page and sends the contact email.
-     * ======================================================================
      *
-     * @return mixed  contact view.
-     * ______________________________________________________________________
+     * @return string|\yii\web\Response
      */
     public function actionContact()
     {
@@ -146,13 +137,10 @@ class SiteController extends Controller
 //------------------------------------------------------------------------------------------------//
 
     /**
-     * ======================================================================
-     * Logs in the user if his account is activated, 
+     * Logs in the user if his account is activated,
      * if not, displays appropriate message.
-     * ======================================================================
      *
-     * @return mixed  requested|login view.
-     * ______________________________________________________________________
+     * @return string|\yii\web\Response
      */
     public function actionLogin()
     {
@@ -191,12 +179,9 @@ class SiteController extends Controller
     }
 
     /**
-     * =========================================================================
      * Logs out the user.
-     * =========================================================================
-     * 
-     * @return mixed  homepage view.
-     * _________________________________________________________________________
+     *
+     * @return \yii\web\Response
      */
     public function actionLogout()
     {
@@ -210,12 +195,9 @@ class SiteController extends Controller
  *----------------*/
 
     /**
-     * =========================================================================
      * Sends email that contains link for password reset action.
-     * =========================================================================
      *
-     * @return mixed  homepage|requestPasswordResetToken view.
-     * _________________________________________________________________________
+     * @return string|\yii\web\Response
      */
     public function actionRequestPasswordReset()
     {
@@ -245,16 +227,13 @@ class SiteController extends Controller
     }
 
     /**
-     * =========================================================================
      * Resets password.
-     * =========================================================================
      *
      * @param  string $token Password reset token.
      *
-     * @throws BadRequestHttpException
+     * @return string|\yii\web\Response
      *
-     * @return mixed           homepage|resetPassword view
-     * _________________________________________________________________________
+     * @throws BadRequestHttpException
      */
     public function actionResetPassword($token)
     {
@@ -287,18 +266,15 @@ class SiteController extends Controller
 //------------------------------------------------------------------------------------------------//
 
     /**
-     * =========================================================================
-     * Signs up the user. 
-     * If user need to activate his account via email, we will display him 
-     * message with instructions and send him account activation email 
-     * ( with link containing account activation token ). If activation is not 
-     * necessary, we will log him in right after sign up process is complete. 
+     * Signs up the user.
+     * If user need to activate his account via email, we will display him
+     * message with instructions and send him account activation email
+     * ( with link containing account activation token ). If activation is not
+     * necessary, we will log him in right after sign up process is complete.
      * NOTE: You can decide whether or not activation is necessary,
-     * see setting page as The Creator.
-     * =========================================================================
+     * @see config/params.php
      *
-     * @return mixed  signup|login|home view.
-     * _________________________________________________________________________
+     * @return string|\yii\web\Response
      */
     public function actionSignup()
     {  
@@ -352,18 +328,12 @@ class SiteController extends Controller
     }
 
     /**
-     * =========================================================================
      * Sign up user with activation.
-     * User will have to activate his account using activation link that we will 
+     * User will have to activate his account using activation link that we will
      * send him via email.
-     * =========================================================================
      *
-     * @param  object  $model  SignupForm.
-     *
-     * @param  object  $user   User.
-     *
-     * @return mixed
-     * _________________________________________________________________________
+     * @param $model
+     * @param $user
      */
     private function signupWithActivation($model, $user)
     {
@@ -394,16 +364,13 @@ class SiteController extends Controller
  *--------------------*/
 
     /**
-     * =========================================================================
      * Activates the user account so he can log in into system.
-     * =========================================================================
      *
-     * @param  string $token Account activation token.
+     * @param  string $token
+     *
+     * @return \yii\web\Response
      *
      * @throws BadRequestHttpException
-     *
-     * @return string          login view.
-     * _________________________________________________________________________
      */
     public function actionActivateAccount($token)
     {

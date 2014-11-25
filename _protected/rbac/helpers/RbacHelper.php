@@ -6,23 +6,20 @@ use app\rbac\models\Role;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * Rbac helper class.
- * ----------------------------------------------------------------------------- 
+ *
+ * @package app\rbac\helpers
  */
 class RbacHelper
-{   
+{
     /**
-     * =========================================================================
      * Assigns the appropriate role to the registered user.
-     * If this is the first registered user in our system, he will get the 
+     * If this is the first registered user in our system, he will get the
      * theCreator role (this should be you), if not, he will get the member role.
-     * =========================================================================
      *
      * @param  integer  $id  The id of the registered user.
      *
      * @return string        Role name.
-     * _________________________________________________________________________
      */
     public static function assignRole($id)
     {

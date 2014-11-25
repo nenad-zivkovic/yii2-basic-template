@@ -8,12 +8,9 @@ use tests\codeception\_pages\SignupPage;
 class SignupCest
 {
     /**
-     * =========================================================================
      * This method is called before each test method.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _before($event)
     {
@@ -28,24 +25,18 @@ class SignupCest
     }
 
     /**
-     * =========================================================================
      * This method is called after each test method, even if test failed.
-     * =========================================================================
      *
      * @param \Codeception\Event\TestEvent $event
-     * _________________________________________________________________________
      */
     public function _after($event)
     { 
     }
 
     /**
-     * =========================================================================
      * This method is called when test fails.
-     * =========================================================================
      *
      * @param \Codeception\Event\FailEvent $event
-     * _________________________________________________________________________
      */
     public function _fail($event)
     {
@@ -56,7 +47,7 @@ class SignupCest
      * Based on your system settings for 'Registration Needs Activation' it will 
      * run either testSignupWithActivation() or testSignupWithoutActivation() method.
      * 
-     * @param  \codeception\FunctionalTester $I
+     * @param  \Codeception\FunctionalTester $I
      * 
      * @param  \Codeception\Scenario $scenario
      */
@@ -70,6 +61,8 @@ class SignupCest
 
     /**
      * Tests user normal signup process.
+     *
+     * @param $I
      */
     private function testSignupWithoutActivation($I)
     {
@@ -114,6 +107,8 @@ class SignupCest
 
     /**
      * Tests user signup with activation process.
+     *
+     * @param $I
      */
     private function testSignupWithActivation($I)
     {

@@ -6,7 +6,6 @@ use yii\db\ActiveRecord;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * This is the model class for table "auth_assignment".
  *
  * @property string $item_name
@@ -14,14 +13,15 @@ use Yii;
  * @property integer $created_at
  *
  * @property User $username
- * -----------------------------------------------------------------------------
+ *
+ * @package app\rbac\models
  */
 class Role extends ActiveRecord
 {
     /**
-     * =========================================================================
-     * Declares the name of the database table associated with this AR class. 
-     * =========================================================================
+     * Declares the name of the database table associated with this AR class
+     *
+     * @return string
      */
     public static function tableName()
     {
@@ -29,9 +29,9 @@ class Role extends ActiveRecord
     }
 
     /**
-     * =========================================================================
      * Returns the validation rules for attributes.
-     * =========================================================================
+     *
+     * @return array
      */
     public function rules()
     {
@@ -42,7 +42,9 @@ class Role extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Returns the attribute labels.
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -52,9 +54,9 @@ class Role extends ActiveRecord
     }
 
     /**
-     * =========================================================================
-     * Relation with User class. 
-     * =========================================================================
+     * Relation with User class.
+     *
+     * @return \yii\db\ActiveQuery
      */
     public function getUser()
     {
@@ -63,13 +65,10 @@ class Role extends ActiveRecord
     }    
 
     /**
-     * =========================================================================
-     * Returns the username of the Role owner. 
+     * Returns the username of the Role owner.
      * NOTE: used in user/update-role view.
-     * =========================================================================
      *
-     * @return string  Username.
-     * _________________________________________________________________________
+     * @return mixed Username
      */
     public function getUsername()
     {     

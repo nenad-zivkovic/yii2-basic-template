@@ -7,21 +7,23 @@ use yii\base\Model;
 use Yii;
 
 /**
- * ------------------------------------------------------------------------------
- * UserSearch represents the model behind the search form for `app\models\User`.
- * ------------------------------------------------------------------------------
+ * UserSearch represents the model behind the search form for app\models\User.
+ *
+ * @package app\models
  */
 class UserSearch extends User
 {
     /**
      * How many users we want to display per page.
-     * 
-     * @var integer
+     *
+     * @var int
      */
     private $_pageSize = 11;
 
     /**
-     * @inheritdoc
+     * Returns the validation rules for attributes.
+     *
+     * @return array
      */
     public function rules()
     {
@@ -31,7 +33,9 @@ class UserSearch extends User
     }
 
     /**
-     * @inheritdoc
+     * Returns a list of scenarios and the corresponding active attributes.
+     *
+     * @return array
      */
     public function scenarios()
     {
@@ -93,11 +97,13 @@ class UserSearch extends User
 
     /**
      * Returns the array of possible user roles.
-     * 
-     * @return array
+     *
+     * @return mixed
      */
     public static function rolesList()
     {
+        $roles = [];
+
         foreach (AuthItem::getRoles() as $item_name) 
         {
             $roles[$item_name->name] = $item_name->name;

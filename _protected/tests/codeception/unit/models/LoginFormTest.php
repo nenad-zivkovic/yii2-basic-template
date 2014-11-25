@@ -12,9 +12,7 @@ class LoginFormTest extends DbTestCase
     use Specify;
 
     /**
-     * =========================================================================
-     * Create the objects against which you will test.  
-     * =========================================================================
+     * Create the objects against which you will test.
      */
     public function setUp()
     {
@@ -31,9 +29,7 @@ class LoginFormTest extends DbTestCase
     }
 
     /**
-     * =========================================================================
-     * Clean up the objects against which you tested. 
-     * =========================================================================
+     * Clean up the objects against which you tested.
      */
     protected function tearDown()
     {
@@ -42,7 +38,7 @@ class LoginFormTest extends DbTestCase
     }
 
     /**
-     * Test wrong login when user is entering wrong username|email based on your 
+     * Test wrong login when user is entering wrong username|email based on your
      * Login With Email settings.
      */
     public function testWrongLogin()
@@ -54,7 +50,7 @@ class LoginFormTest extends DbTestCase
     }
 
     /**
-     * If username is wrong user should not be able to log in. 
+     * If username is wrong user should not be able to log in.
      */
     private function testLoginWrongUsername()
     {
@@ -87,11 +83,7 @@ class LoginFormTest extends DbTestCase
     }
 
     /**
-     * =========================================================================
-     * If password is wrong user should not be able to log in. 
-     * NOTE: it is enough to test only username/password combo, we do not need to 
-     * test email/password too. 
-     * =========================================================================
+     * If password is wrong user should not be able to log in.
      */
     public function testLoginWrongPassword()
     {
@@ -117,11 +109,7 @@ class LoginFormTest extends DbTestCase
     }
 
     /**
-     * =========================================================================
      * If user has not activated his account he should not be able to log in.
-     * NOTE: it is enough to test only username/password combo, we do not need to 
-     * test email/password too. 
-     * =========================================================================
      */
     public function testLoginNotActivatedUser()
     {
@@ -145,11 +133,7 @@ class LoginFormTest extends DbTestCase
     } 
 
     /**
-     * =========================================================================
      * Active user should be able to log in if he enter correct credentials.
-     * NOTE: it is enough to test only username/password combo, we do not need to 
-     * test email/password too. 
-     * =========================================================================
      */
     public function testLoginActivatedUser()
     {
@@ -175,9 +159,9 @@ class LoginFormTest extends DbTestCase
     } 
 
     /**
-     * =========================================================================
-     * Declares the fixtures that are needed by the current test case. 
-     * =========================================================================
+     * Declares the fixtures that are needed by the current test case.
+     *
+     * @return array
      */
     public function fixtures()
     {

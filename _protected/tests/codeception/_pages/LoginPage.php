@@ -1,26 +1,21 @@
 <?php
 namespace tests\codeception\_pages;
 
-use app\models\Setting;
 use yii\codeception\BasePage;
 
 /**
- * Represents login page
- * @property \AcceptanceTester|\FunctionalTester $actor
+ * Represents Login Page
+ * @package tests\codeception\_pages
  */
 class LoginPage extends BasePage
 {
     public $route = 'site/login';
 
     /**
-     * =========================================================================
      * Method representing user submitting login form.
-     * =========================================================================
      *
-     * @param string  $user      Can be users username or email.
-     * 
-     * @param string  $password
-     * _________________________________________________________________________
+     * @param $user
+     * @param $password
      */
     public function login($user, $password)
     {

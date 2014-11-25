@@ -5,18 +5,18 @@ use yii\base\Model;
 use Yii;
 
 /**
- * -----------------------------------------------------------------------------
  * Password reset request form.
- * -----------------------------------------------------------------------------
+ *
+ * @package app\models
  */
 class PasswordResetRequestForm extends Model
 {
     public $email;
 
     /**
-     * =========================================================================
      * Returns the validation rules for attributes.
-     * =========================================================================
+     *
+     * @return array
      */
     public function rules()
     {
@@ -32,13 +32,10 @@ class PasswordResetRequestForm extends Model
         ];
     }
 
- /**
-     * =========================================================================
+    /**
      * Sends an email with a link, for resetting the password.
-     * =========================================================================
      *
-     * @return boolean  Whether the email was send.
-     * _________________________________________________________________________
+     * @return bool Whether the email was send.
      */
     public function sendEmail()
     {
