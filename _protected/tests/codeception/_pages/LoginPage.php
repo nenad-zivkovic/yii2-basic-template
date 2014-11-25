@@ -24,8 +24,8 @@ class LoginPage extends BasePage
      */
     public function login($user, $password)
     {
-        // if we should login user with email use email field, otherwise use username
-        $field = Setting::get(Setting::LOGIN_WITH_EMAIL) ? 'email' : 'username' ;
+        // if 'Login With Email' is true use email field, otherwise use username
+        $field = (\Yii::$app->params['lwe']) ? 'email' : 'username' ;
 
         $this->actor->fillField('input[name="LoginForm['.$field.']"]', $user);
         $this->actor->fillField('input[name="LoginForm[password]"]', $password);
