@@ -10,13 +10,20 @@ $this->title = Yii::t('app', 'Create {modelClass}', [
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-create">
+<div id="form">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'user' => $user,
-        'role' => $role,
-    ]) ?>
+    <div class="user-create col-lg-6">
+    <div class="well bs-component">
+
+        <?= $this->render('_form', [
+            'user' => $user,
+            'role' => $role,
+        ]) ?>
+
+    </div>
+    </div>
 
 </div>
+

@@ -9,11 +9,10 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $role app\rbac\models\Role; */
 ?>
-
 <div class="user-form">
 
     <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
 
     <?php $form = ActiveForm::begin(['id' => 'form-user']); ?>
 
@@ -33,7 +32,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-6">
 
         <?= $form->field($user, 'status')->dropDownList($user->statusList()) ?>
 

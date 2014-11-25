@@ -1,8 +1,12 @@
-@import url("bootstrap.min.css");
+@import url("bootstrap.css");
 
 html,
 body {
     height: 100%;
+}
+
+#form h1, h2, h3, h4, h5, h6 {
+    margin-left: 15px;
 }
 
 .wrap {
@@ -14,6 +18,10 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+}
+
+.jumbotron {
+    text-align: center;
 }
 
 .footer {
@@ -92,7 +100,8 @@ div.required label:after {
     color: #e13431;
 }
 
-/*-- User list display tweaks --*/
+/*-- User index display tweaks --*/
+
 .user-index td:last-child {
     width: 68px;
 }
@@ -143,7 +152,6 @@ div.required label:after {
     display: none;
 }
 
-/* fix strength meter background display */
 #form-signup table,
 #form-user table {
     background-color: transparent;

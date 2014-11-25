@@ -10,13 +10,19 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['
 $this->params['breadcrumbs'][] = ['label' => $user->username, 'url' => ['view', 'id' => $user->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="user-update">
+<div id="form">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'user' => $user,
-        'role' => $role,
-    ]) ?>
+    <div class="user-update col-lg-6">
+    <div class="well bs-component">
+
+        <?= $this->render('_form', [
+            'user' => $user,
+            'role' => $role,
+        ]) ?>
+
+    </div>
+    </div>
 
 </div>
