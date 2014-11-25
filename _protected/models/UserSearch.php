@@ -77,7 +77,8 @@ class UserSearch extends User
             'desc' => ['item_name' => SORT_DESC],
         ];
 
-        if (!($this->load($params) && $this->validate())) {
+        if (!($this->load($params) && $this->validate())) 
+        {
             return $dataProvider;
         }
 

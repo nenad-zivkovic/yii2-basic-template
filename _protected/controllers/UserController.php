@@ -166,9 +166,12 @@ class UserController extends AppController
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) 
+        {
             return $model;
-        } else {
+        } 
+        else 
+        {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
