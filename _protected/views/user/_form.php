@@ -37,10 +37,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($user, 'status')->dropDownList($user->statusList()) ?>
 
         <?php foreach (AuthItem::getRoles() as $item_name): ?>
-            <?php
-            $roles = [];
-            $roles[$item_name->name] = $item_name->name
-            ?>
+            <?php $roles[$item_name->name] = $item_name->name ?>
         <?php endforeach ?>
         <?= $form->field($role, 'item_name')->dropDownList($roles) ?>
 
