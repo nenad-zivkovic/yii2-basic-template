@@ -82,7 +82,7 @@ class UserController extends AppController
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing User and Role models.
      * If update is successful, the browser will be redirected to the 'view' page.
      *
      * @param  integer $id The user id.
@@ -92,7 +92,11 @@ class UserController extends AppController
      */
     public function actionUpdate($id)
     {
+        // get role
         $role = Role::findOne(['user_id' => $id]);
+
+        // get user details
+        $user = $this->findModel($id);
 
         // only The Creator can update everyone`s roles
         // admin will not be able to update role of theCreator
@@ -104,8 +108,7 @@ class UserController extends AppController
             }
         }
 
-        $user = $this->findModel($id);
-
+        // load user data with role and validate them
         if ($user->load(Yii::$app->request->post()) && 
             $role->load(Yii::$app->request->post()) && Model::validateMultiple([$user, $role])) 
         {
@@ -114,6 +117,12 @@ class UserController extends AppController
             {
                 $user->setPassword($user->password);
             }
+
+            // if admin is activating user manually we want to remove account activation token
+            if ($user->status == User::STATUS_ACTIVE && $user->account_activation_token != null) 
+            {
+                $user->removeAccountActivationToken();
+            }            
 
             $user->save(false);
             $role->save(false); 
