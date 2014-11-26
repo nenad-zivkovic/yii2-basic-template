@@ -18,7 +18,6 @@ class RbacHelper
      * theCreator role (this should be you), if not, he will get the member role.
      *
      * @param  integer  $id  The id of the registered user.
-     *
      * @return string        Role name.
      */
     public static function assignRole($id)

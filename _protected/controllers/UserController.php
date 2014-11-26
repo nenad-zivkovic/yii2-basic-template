@@ -35,7 +35,6 @@ class UserController extends AppController
      * Displays a single User model.
      *
      * @param  integer $id The user id.
-     *
      * @return string
      *
      * @throws NotFoundHttpException
@@ -87,7 +86,6 @@ class UserController extends AppController
      * If update is successful, the browser will be redirected to the 'view' page.
      *
      * @param  integer $id The user id.
-     *
      * @return string|\yii\web\Response
      *
      * @throws NotFoundHttpException
@@ -136,7 +134,6 @@ class UserController extends AppController
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @param  integer $id The user id.
-     *
      * @return \yii\web\Response
      *
      * @throws NotFoundHttpException
@@ -159,7 +156,6 @@ class UserController extends AppController
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
      * @param  integer $id The user id.
-     *
      * @return User The loaded model.
      *
      * @throws NotFoundHttpException

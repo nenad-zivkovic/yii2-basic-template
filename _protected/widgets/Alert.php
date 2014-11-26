@@ -52,7 +52,10 @@ class Alert extends Widget
      */
     public $closeButton = [];
 
-    public function init ()
+    /**
+     * Initializes the widget.
+     */
+    public function init()
     {
         parent::init();
 

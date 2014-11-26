@@ -5,6 +5,7 @@ use yii\codeception\BasePage;
 
 /**
  * Represents Contact Page
+ * 
  * @package tests\codeception\_pages
  */
 class ContactPage extends BasePage

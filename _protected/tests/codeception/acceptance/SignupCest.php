@@ -47,9 +47,8 @@ class SignupCest
      * Based on your system settings for 'Registration Needs Activation' it will
      * run either testSignupWithActivation() or testSignupWithoutActivation() method.
      *
-     * @param  \Codeception\AcceptanceTester $I
-     *
-     * @param  \Codeception\Scenario $scenario
+     * @param \Codeception\AcceptanceTester $I
+     * @param \Codeception\Scenario         $scenario
      */
     public function testSignup($I, $scenario)
     {

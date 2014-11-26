@@ -45,7 +45,6 @@ class LoginForm extends Model
      * This method serves as the inline validation for password.
      *
      * @param string $attribute The attribute currently being validated.
-     *
      * @param array  $params    The additional name-value pairs.
      */
     public function validatePassword($attribute, $params)

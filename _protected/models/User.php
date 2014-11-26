@@ -131,7 +131,6 @@ class User extends UserIdentity
      * Finds user by username.
      *
      * @param  string $username
-     *
      * @return static|null
      */
     public static function findByUsername($username)
@@ -143,7 +142,6 @@ class User extends UserIdentity
      * Finds user by email.
      *
      * @param  string $email
-     *
      * @return static|null
      */
     public static function findByEmail($email)
@@ -174,7 +172,6 @@ class User extends UserIdentity
      * Finds user by account activation token.
      *
      * @param  string $token Account activation token.
-     *
      * @return static|null
      */
     public static function findByAccountActivationToken($token)
@@ -193,7 +190,6 @@ class User extends UserIdentity
      * Returns the user status in nice format.
      *
      * @param  null|integer $status Status integer value if sent to method.
-     *
      * @return string               Nicely formatted status.
      */
     public function getStatusName($status = null)
@@ -260,7 +256,6 @@ class User extends UserIdentity
      * Finds out if password reset token is valid.
      * 
      * @param  string $token Password reset token.
-     * 
      * @return bool
      */
     public static function isPasswordResetTokenValid($token)

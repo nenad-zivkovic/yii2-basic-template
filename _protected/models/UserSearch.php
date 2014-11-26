@@ -46,8 +46,7 @@ class UserSearch extends User
     /**
      * Creates data provider instance with search query applied
      *
-     * @param array $params
-     *
+     * @param  array $params
      * @return ActiveDataProvider
      */
     public function search($params)

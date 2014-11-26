@@ -37,9 +37,8 @@ class LoginCest
      * Based on your system settings for 'Login With Email' it will 
      * run either testLoginWithEmail() or testLoginWithUsername method.
      * 
-     * @param  \Codeception\FunctionalTester $I
-     *
-     * @param  \Codeception\Scenario $scenario
+     * @param \Codeception\FunctionalTester $I
+     * @param \Codeception\Scenario         $scenario
      */
     public function testLogin($I, $scenario)
     {
@@ -117,9 +116,8 @@ class LoginCest
      * We want to be sure that not active user can not login.
      * If he try to login, he should get error flash message.
      * 
-     * @param  \Codeception\FunctionalTester $I
-     *
-     * @param  \Codeception\Scenario $scenario
+     * @param \Codeception\FunctionalTester $I
+     * @param \Codeception\Scenario         $scenario
      */
     public function testLoginNotActiveUser($I, $scenario)
     {

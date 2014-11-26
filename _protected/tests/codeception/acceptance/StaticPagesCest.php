@@ -38,8 +38,7 @@ class StaticPagesCest
      * Test home page.
      *
      * @param \Codeception\AcceptanceTester $I
-     *
-     * @param \Codeception\Scenario $scenario
+     * @param \Codeception\Scenario         $scenario
      */
     public function testHomePage($I, $scenario)
     {
@@ -55,8 +54,7 @@ class StaticPagesCest
      * Test about page.
      *
      * @param \Codeception\AcceptanceTester $I
-     *
-     * @param \Codeception\Scenario $scenario
+     * @param \Codeception\Scenario         $scenario
      */
     public function testAboutPage($I, $scenario)
     {
@@ -69,8 +67,7 @@ class StaticPagesCest
      * Test contact page.
      *
      * @param \Codeception\AcceptanceTester $I
-     *
-     * @param \Codeception\Scenario $scenario
+     * @param \Codeception\Scenario         $scenario
      */
     public function testContact($I, $scenario)
     {

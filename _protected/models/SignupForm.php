@@ -103,7 +103,6 @@ class SignupForm extends Model
      * Sends email to registered user with account activation link.
      *
      * @param  object $user Registered user.
-     *
      * @return bool         Whether the message has been sent successfully.
      */
     public function sendAccountActivationEmail($user)

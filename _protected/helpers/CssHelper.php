@@ -13,7 +13,6 @@ class CssHelper
      * NOTE: used in user/index view.
      *
      * @param  string $status User status.
-     *
      * @return string         Css class.
      */
     public static function statusCss($status)
@@ -33,7 +32,6 @@ class CssHelper
      * NOTE: used in user/index view.
      *
      * @param  string $role Role name.
-     *
      * @return string       Css class.
      */
     public static function roleCss($role)

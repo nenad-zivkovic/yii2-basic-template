@@ -230,7 +230,6 @@ class SiteController extends Controller
      * Resets password.
      *
      * @param  string $token Password reset token.
-     *
      * @return string|\yii\web\Response
      *
      * @throws BadRequestHttpException
@@ -367,7 +366,6 @@ class SiteController extends Controller
      * Activates the user account so he can log in into system.
      *
      * @param  string $token
-     *
      * @return \yii\web\Response
      *
      * @throws BadRequestHttpException

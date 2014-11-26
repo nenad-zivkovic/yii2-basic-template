@@ -5,6 +5,7 @@ use yii\codeception\BasePage;
 
 /**
  * Represents Login Page
+ * 
  * @package tests\codeception\_pages
  */
 class LoginPage extends BasePage
