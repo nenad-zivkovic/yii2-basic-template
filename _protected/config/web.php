@@ -13,7 +13,8 @@ $config = [
             // - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
-        // you can set your theme here (template comes with 'default' and 'slate')
+        // you can set your theme here 
+        // - template comes with: 'default', 'slate', 'spacelab' and 'cerulean'
         'view' => [
             'theme' => [
                 'pathMap' => ['@app/views' => '@webroot/themes/slate/views'],

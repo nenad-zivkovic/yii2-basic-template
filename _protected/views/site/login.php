@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login col-lg-6">
+<div class="site-login col-lg-5">
 <div class="well bs-component">
 
     <h1><?= Html::encode($this->title) ?></h1>

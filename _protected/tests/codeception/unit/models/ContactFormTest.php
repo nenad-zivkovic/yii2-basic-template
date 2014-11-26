@@ -70,5 +70,4 @@ class ContactFormTest extends TestCase
     {
         return Yii::getAlias(Yii::$app->mailer->fileTransportPath) . '/testing_message.eml';
     }
-
 }

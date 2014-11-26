@@ -51,5 +51,4 @@ class AccountActivationTest extends DbTestCase
             ],
         ];
     }
-
 }
