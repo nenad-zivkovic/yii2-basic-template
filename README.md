@@ -8,6 +8,24 @@ There are several upgrades made to this template.
 2. It has additional features listed at the end of this guide.
 3. Application structure has been changed to be 'shared hosting friendly'.
 
+Features
+-------------------
+
+- Signup with/without account activation
+    - The Creator (super admin) can chose whether or not new users need to activate their account using email account activation system before they can log in.
+- Login using email/password or username/password combo.
+    - The Creator (super admin) can chose how users will login into system. They can log in either by using their username|password combo or email|password.
+- Rbac tables are installed with other migrations when you run ```yii migrate``` command.
+    - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
+    - Roles can be easily assigned to users by administrators of the site.
+    - Nice example of how to use rbac in your code is given in this application. See: AppController.
+- Session data is stored in _protected/session folder.
+- System setting are stored in config/params.php file ( changes from v2 ).
+- Theming is supported out of box.
+- Administrators and The Creator can manage users ( changes from v2 ).
+- Password strength validation and strength meter.
+- Code is heavily commented out.
+
 Installation
 -------------------
 >I am assuming that you know how to: install and use Composer, and install additional packages/drivers that may be needed for you to run everything on your system. In case you are new to all of this, you can check my guides for installing default yii2 application templates, provided by yii2 developers, on Windows 8 and Ubuntu based Linux operating systems, posted on www.freetuts.org.
@@ -39,7 +57,7 @@ permissions:
 
 You are done, you can start your application in your browser.
 
-> Note: First user that signs up will get 'The Creator' (super admin) role. This is supposed to be you. This role have all possible super powers :) . Every other user that signs up after the first one will get 'member' role. Member is just normal authenticated user. 
+> Note: First user that signs up will get 'theCreator' (super admin) role. This is supposed to be you. This role have all possible super powers :-) . Every other user that signs up after the first one will get 'member' role. Member is just normal authenticated user. 
 
 Testing
 -------------------
@@ -92,34 +110,30 @@ _protected
 assets                   contains application assets generated during runtime
 themes                   contains your themes
 ```
-Features
+
+Version 2.0 changes
 -------------------
 
-- Signup with/without account activation
-    - The Creator (super admin) can chose whether or not new users need to activate their account using email account activation system before they can log in.
-- Login using email/password or username/password combo.
-    - The Creator (super admin) can chose how users will login into system. They can log in either by using their username|password combo or email|password.
-- Rbac tables are installed with other migrations when you run ```yii migrate``` command.
-    - RbacController's init() action will insert 4 roles and 5 permissions in our rbac tables created by migration.
-    - Roles can be easily assigned to users by administrators of the site.
-    - Nice example of how to use rbac in your code is given in this application. See: AppController.
-- Session data is stored in database out of box.
-- The Creator role (super admin) can use system settings that comes with template.
-- Theming is supported out of box.
-- Administrators and The Creator can update their account.
-- Password strength validation and strength meter.
-- Code is heavily commented out.
+
+
+1) settings are stored in config/params.php configuration file to reduce database load  
+2) session is stored in files located in runtime/session folder  
+3) account update is merged with user management and user management is more powerful now  
+4) 4 beautiful bootstrap responsive themes are included out of the box  
+5) comment style is changed according to yii2 official style  
+6) tests has been rewritten according to the changes that has been made  
+7) a lot of other polishing has been done  
 
 Password strength guide
 -----------------------
 
 Since 1.1.1 version has been released, password strength extension has been included as a core part of improved templates. Usage is very simple:
 
-In our signup and account update forms password strength meter is always displayed when users are entering their password. This will give them visual representation of their password strength.  
-But this is not all. As The Creator you have option in your settings "Force Strong Password" that you can use. If you turn it on, users will be forced to use strong passwords according to preset you chose. For example if you use normal preset, user will be forced to use at least 8 characters long password, with at least one upper-case and one lower-case letter, plus at least one digit.  
+In our signup, user create/update and password reset forms password strength meter is always displayed when users are entering their password. This will give them visual representation of their password strength.  
+But this is not all. As The Creator you have option in your settings "Force Strong Password" that you can use. If you turn it on, users will be forced to use strong passwords according to preset you chose. For example if you use normal preset, users will be forced to use at least 8 characters long password, with at least one upper-case and one lower-case letter, plus at least one digit.  
 
-> In our account update form for admins and The Creator, force strong password is __always__ turned on. This is because admins and super admin should __always__ use strong passwords!  
+> Since version 2 settings are stored in config/params.php file!  
 
 Choosing presets:
 
-By default normal preset is used for both signup and account edit forms. if you want to customize which preset is used, see SignupForm model and User model. You will see rules declared for using strong passwords. Presets are located in ```vendor/nenad/yii2-password-strength/presets.php```. You can chose some other preset declared in presets.php, or create new ones.
+By default normal preset is used for signup and user create/update forms. For password reset we are using 'reset' preset if you want to customize which presets is used, see SignupForm model, User model and ResetPasswordForm model. You will see rules declared for using strong passwords. Presets are located in ```vendor/nenad/yii2-password-strength/presets.php```. You can chose some other preset declared in presets.php, or create new ones.
