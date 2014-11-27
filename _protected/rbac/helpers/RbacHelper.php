@@ -7,8 +7,6 @@ use Yii;
 
 /**
  * Rbac helper class.
- *
- * @package app\rbac\helpers
  */
 class RbacHelper
 {
@@ -17,8 +15,8 @@ class RbacHelper
      * If this is the first registered user in our system, he will get the
      * theCreator role (this should be you), if not, he will get the member role.
      *
-     * @param  integer  $id  The id of the registered user.
-     * @return string        Role name.
+     * @param  integer $id The id of the registered user.
+     * @return string      Role name.
      */
     public static function assignRole($id)
     {

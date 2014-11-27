@@ -40,7 +40,7 @@ class LoginFormTest extends DbTestCase
     /**
      * If username is wrong user should not be able to log in.
      */
-    private function testLoginWrongUsername()
+    public function testLoginWrongUsername()
     {
         $model = new LoginForm([
             'username' => 'wrong',
@@ -57,7 +57,7 @@ class LoginFormTest extends DbTestCase
     /**
      * If email is wrong user should not be able to log in.
      */
-    private function testLoginWrongEmail()
+    public function testLoginWrongEmail()
     {
         $model = new LoginForm(['scenario' => 'lwe']);
         $model->email = 'member@wrong.com';

@@ -14,8 +14,6 @@ use Yii;
  * @property string  $data
  * @property integer $created_at
  * @property integer $updated_at
- *
- * @package app\rbac\models
  */
 class AuthItem extends ActiveRecord
 {
@@ -31,7 +29,7 @@ class AuthItem extends ActiveRecord
 
     /**
      * Returns roles.
-     * NOTE: used for updating user role (user/update-role).
+     * NOTE: used for updating user role (user/update).
      *
      * @return array|\yii\db\ActiveRecord[]
      */

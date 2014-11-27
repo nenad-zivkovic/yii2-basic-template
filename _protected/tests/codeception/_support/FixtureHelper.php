@@ -6,7 +6,6 @@ use Codeception\Module;
 use yii\test\FixtureTrait;
 
 /**
- * -----------------------------------------------------------------------------
  * This helper is used to populate database with needed fixtures before any 
  * tests should be run. For example - populate database with demo login user 
  * that should be used in acceptance and functional tests. All fixtures will be 
@@ -14,7 +13,6 @@ use yii\test\FixtureTrait;
  */
 class FixtureHelper extends Module
 {
-
     /**
      * Redeclare visibility because codeception includes all public methods that not starts from "_"
      * and not excluded by module settings, in actor class.
@@ -29,15 +27,11 @@ class FixtureHelper extends Module
     }
 
     /**
-     * =========================================================================
      * Method called before any suite tests run. Loads User fixture login user
      * to use in acceptance and functional tests.
-     * =========================================================================
      *
-     * @param array $settings
-     *
+     * @param  array $settings
      * @return mixed
-     * _________________________________________________________________________
      */
     public function _beforeSuite($settings = [])
     {
@@ -45,9 +39,7 @@ class FixtureHelper extends Module
     }
 
     /**
-     * =========================================================================
      * Method is called after all suite tests run. 
-     * =========================================================================
      */
     public function _afterSuite()
     {
@@ -55,9 +47,7 @@ class FixtureHelper extends Module
     }
 
     /**
-     * =========================================================================
      * Declares the fixtures that are needed by the current test case. 
-     * =========================================================================
      */
     public function fixtures()
     {

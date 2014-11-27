@@ -12,9 +12,7 @@ use Yii;
  * @property string $user_id
  * @property integer $created_at
  *
- * @property User $username
- *
- * @package app\rbac\models
+ * @property $username User
  */
 class Role extends ActiveRecord
 {
@@ -63,17 +61,4 @@ class Role extends ActiveRecord
         // Role has_many User via User.id -> user_id
         return $this->hasMany(User::className(), ['id' => 'user_id']);
     }    
-
-    /**
-     * Returns the username of the Role owner.
-     * NOTE: used in user/update-role view.
-     *
-     * @return mixed Username
-     */
-    public function getUsername()
-    {     
-        $user = $this->getUser()->one();
-
-        return $user->username;    
-    }
 }

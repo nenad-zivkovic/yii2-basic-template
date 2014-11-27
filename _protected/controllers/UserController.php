@@ -10,8 +10,6 @@ use Yii;
 
 /**
  * UserController implements the CRUD actions for User model.
- *
- * @package app\controllers
  */
 class UserController extends AppController
 {

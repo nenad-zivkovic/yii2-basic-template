@@ -9,21 +9,8 @@ use Yii;
 /**
  * This is the user model class extending UserIdentity.
  * Here you can implement your custom user solutions.
- *
- * @property integer $id
- * @property string $username
- * @property string $email
- * @property string $password_hash
- * @property integer $status
- * @property string $auth_key
- * @property string $password_reset_token
- * @property string $account_activation_token
- * @property integer $created_at
- * @property integer $updated_at
- *
- * @property Role $role
- *
- * @package app\models
+ * 
+ * @property $role Role
  */
 class User extends UserIdentity
 {
@@ -95,17 +82,6 @@ class User extends UserIdentity
     }
 
     /**
-     * Relation with Role model.
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRole()
-    {
-        // User has_one Role via Role.user_id -> id
-        return $this->hasOne(Role::className(), ['user_id' => 'id']);
-    }    
-
-    /**
      * Returns the attribute labels.
      *
      * @return array
@@ -122,6 +98,17 @@ class User extends UserIdentity
             'item_name' => Yii::t('app', 'Role'),
         ];
     }
+
+    /**
+     * Relation with Role model.
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRole()
+    {
+        // User has_one Role via Role.user_id -> id
+        return $this->hasOne(Role::className(), ['user_id' => 'id']);
+    }  
 
 //------------------------------------------------------------------------------------------------//
 // USER FINDERS

@@ -8,8 +8,6 @@ use Yii;
 
 /**
  * Model representing  Signup Form.
- *
- * @package app\models
  */
 class SignupForm extends Model
 {

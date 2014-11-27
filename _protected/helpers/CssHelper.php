@@ -3,8 +3,6 @@ namespace app\helpers;
 
 /**
  * Css helper class.
- *
- * @package app\helpers
  */
 class CssHelper
 {
