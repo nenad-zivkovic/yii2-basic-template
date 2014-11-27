@@ -73,9 +73,9 @@ Here is how you can set up everything easily:
 
 3. Open up your console and ```cd``` to the ```_protected``` folder of your application.
 
-4. Run the migrations again: ``` ./yii migrate ``` ( on Windows it is ```yii migrate```)
+4. Run the migrations again: ``` ./yii migrate ``` or if you are on Windows: ```yii migrate```
 
-5. Run rbac/init again: ``` ./yii rbac/init ``` ( on Windows it is ```yii rbac/init```)
+5. Run rbac/init again: ``` ./yii rbac/init ``` or if you are on Windows: ```yii rbac/init```
 
 6. Now you can tell your application to use your ```basic``` database again instead of ```basic_tests```.
 Adjust your ```db.php``` config file again.
