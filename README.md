@@ -19,7 +19,7 @@ Features
     - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
     - Roles can be easily assigned to users by administrators of the site.
     - Nice example of how to use rbac in your code is given in this application. See: AppController.
-- Session data is stored in _protected/session folder.
+- Session data is stored in _protected/session folder ( changes from v2 ).
 - System setting are stored in config/params.php file ( changes from v2 ).
 - Theming is supported out of box.
 - Administrators and The Creator can manage users ( changes from v2 ).
@@ -47,12 +47,12 @@ Open up db.php config file in ```basic/_protected/config/db.php``` and adjust yo
 
 7. Execute yii migration command that will install necessary database tables:
 
-   ``` ./yii migrate ``` or if you are on Windows: ``` yii migrate ```
+   ``` ./yii migrate ``` or if you are on Windows ``` yii migrate ```
 
 8. Execute _rbac_ controller _init_ action that will populate our rbac tables with default roles and
 permissions:
 
-   ``` ./yii rbac/init ``` or if you are on Windows: ``` yii rbac/init ```
+   ``` ./yii rbac/init ``` or if you are on Windows ``` yii rbac/init ```
 
 
 You are done, you can start your application in your browser.
@@ -73,9 +73,9 @@ Here is how you can set up everything easily:
 
 3. Open up your console and ```cd``` to the ```_protected``` folder of your application.
 
-4. Run the migrations again: ``` ./yii migrate ``` or if you are on Windows: ```yii migrate```
+4. Run the migrations again: ``` ./yii migrate ``` or if you are on Windows ```yii migrate```
 
-5. Run rbac/init again: ``` ./yii rbac/init ``` or if you are on Windows: ```yii rbac/init```
+5. Run rbac/init again: ``` ./yii rbac/init ``` or if you are on Windows ```yii rbac/init```
 
 6. Now you can tell your application to use your ```basic``` database again instead of ```basic_tests```.
 Adjust your ```db.php``` config file again.
