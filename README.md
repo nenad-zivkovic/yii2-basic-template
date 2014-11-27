@@ -12,9 +12,9 @@ Features
 -------------------
 
 - Signup with/without account activation
-    - The Creator (super admin) can chose whether or not new users need to activate their account using email account activation system before they can log in.
+    - You can chose whether or not new users need to activate their account using email account activation system before they can log in.
 - Login using email/password or username/password combo.
-    - The Creator (super admin) can chose how users will login into system. They can log in either by using their username|password combo or email|password.
+    - You can chose how users will login into system. They can log in either by using their username|password combo or email|password.
 - Rbac tables are installed with other migrations when you run ```yii migrate``` command.
     - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
     - Roles can be easily assigned to users by administrators of the site.
@@ -113,8 +113,6 @@ themes                   contains your themes
 
 Version 2.0 changes
 -------------------
-
-
 
 1) settings are stored in config/params.php configuration file to reduce database load  
 2) session is stored in files located in runtime/session folder  
