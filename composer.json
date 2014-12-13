@@ -1,11 +1,11 @@
 {
     "name": "nenad/yii2-basic-template",
     "description": "Improved Yii 2 Basic Application Template By Nenad Zivkovic",
-    "keywords": ["yii2", "framework", "basic", "application template", "nenad"],
+    "keywords": ["yii2", "framework", "basic", "improved", "application template", "nenad"],
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "tutorial": "http://freetuts.org/",
+        "tutorial": "http://www.freetuts.org/tutorial/view?id=6",
         "source": "https://github.com/nenad-zivkovic/yii2-basic-template"
     },
     "minimum-stability": "stable",
