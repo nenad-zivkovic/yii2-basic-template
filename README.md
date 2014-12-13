@@ -116,8 +116,8 @@ Version 2.0 changes
 
 1) settings are stored in config/params.php configuration file to reduce database load  
 2) session is stored in files located in runtime/session folder  
-3) account update is merged with user management and user management is more powerful now 
-4) User model has been separated on UserIdentity and User (for easier understanding and use)
+3) account update is merged with user management and user management is more powerful now   
+4) User model has been separated on UserIdentity and User (for easier understanding and use)  
 5) 4 beautiful bootstrap responsive themes are included out of the box  
 6) comment style is changed according to yii2 official style  
 7) tests has been rewritten according to the changes that has been made  
