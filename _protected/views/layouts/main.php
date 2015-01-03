@@ -34,32 +34,32 @@ AppAsset::register($this);
             ]);
 
             // everyone can see Home page
-            $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
+            $menuItems[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']];
 
             // we do not need to display About and Contact pages to admins
             if (!Yii::$app->user->can('admin')) 
             {
-                $menuItems[] = ['label' => 'About', 'url' => ['/site/about']];
-                $menuItems[] = ['label' => 'Contact', 'url' => ['/site/contact']];
+                $menuItems[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
+                $menuItems[] = ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']];
             }
 
             // display Users to admin+ roles
             if (Yii::$app->user->can('admin'))
             {
-                $menuItems[] = ['label' => 'Users', 'url' => ['/user/index']];
+                $menuItems[] = ['label' => Yii::t('app', 'Users'), 'url' => ['/user/index']];
             }
             
             // display Signup and Login pages to guests of the site
             if (Yii::$app->user->isGuest) 
             {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
             }
             // display Logout to all logged in users
             else 
             {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => Yii::t('app', 'Logout'). ' (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
