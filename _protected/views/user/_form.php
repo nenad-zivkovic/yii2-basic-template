@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         <?php else: ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), [])
                      ->passwordInput([
-                     'placeholder' => 'New pwd ( if you want to change it )']) 
+                     'placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
             ?>       
         <?php endif ?>
     </div>
@@ -46,7 +46,7 @@ use yii\widgets\ActiveForm;
             Yii::t('app', 'Update'), ['class' => $user->isNewRecord ? 
             'btn btn-success' : 'btn btn-primary']) ?>
 
-        <?= Html::a('Cancel', ['user/index'], ['class' => 'btn btn-default']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), ['user/index'], ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

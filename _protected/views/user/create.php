@@ -5,25 +5,25 @@ use yii\helpers\Html;
 /* @var $user app\models\User */
 /* @var $role app\rbac\models\Role */
 
-$this->title = Yii::t('app', 'Create {modelClass}', [
-    'modelClass' => 'User',
-]);
+$this->title = Yii::t('app', 'Create User');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="form">
+<div class="user-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="user-create col-lg-5">
-    <div class="well bs-component">
+    <div class="row">
+        <div class="col-lg-5">
+        <div class="well bs-component">
 
-        <?= $this->render('_form', [
-            'user' => $user,
-            'role' => $role,
-        ]) ?>
+            <?= $this->render('_form', [
+                'user' => $user,
+                'role' => $role,
+            ]) ?>
 
-    </div>
+        </div>
+        </div>
     </div>
 
 </div>

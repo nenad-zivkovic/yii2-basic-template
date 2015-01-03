@@ -92,4 +92,7 @@ return [
     'The above error occurred while the Web server was processing your request.' => 'Dogodila se gore pomenuta greška kada je server pokušao da izvrši Vaš zahtev.',
     'Please contact us if you think this is a server error. Thank you.' => 'Molimo Vas kontaktirajte nas ukoliko mislite da je ovo greška našeg servera. Hvala.',
 
+    //-- delete messages --//
+    'Are you sure you want to delete this user?' => 'Da li ste sigurni da želite da obrišete ovog korisnika?',
+    
 ];

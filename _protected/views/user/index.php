@@ -17,9 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::encode($this->title) ?>
 
     <span class="pull-right">
-            <?= Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'User',]), 
-                                      ['create'], ['class' => 'btn btn-success']) ?>
-    </span>        
+            <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
+    </span>         
 
     </h1>
 
@@ -72,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['title'=>'Delete user', 
                             'class'=>'glyphicon glyphicon-trash',
                             'data' => [
-                                'confirm' => 'Are you sure you want to delete this user?',
+                                'confirm' => Yii::t('app', 'Are you sure you want to delete this user?'),
                                 'method' => 'post']
                         ]);
                     }
