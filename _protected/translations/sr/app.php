@@ -49,8 +49,8 @@ return [
     'Please choose your new password:' => 'Molimo Vas da izaberete Vašu novu Lozinku:',
     'New password was saved.' => 'Nova lozinka je sačuvana.',
     'Sorry, we are unable to reset password for email provided.' => 'Žao nam je, ne možemo da resetujemo lozinku za dati email.',
-    'Password reset token cannot be blank.' => 'Token ne može biti prazan',
-    'Wrong password reset token.' => 'Pogrešan token',
+    'Password reset token cannot be blank.' => 'Token ne može biti prazan.',
+    'Wrong password reset token.' => 'Pogrešan token.',
 
     // signup
     'Signup'   => 'Registracija',
@@ -87,5 +87,9 @@ return [
     'Create User' => 'Napravi nalog',
     'Update User' => 'Izmeni nalog korisnika',
     'New pwd ( if you want to change it )' => 'Nova lozinka ( ako je menjate )',
+
+    //-- errors --//
+    'The above error occurred while the Web server was processing your request.' => 'Dogodila se gore pomenuta greška kada je server pokušao da izvrši Vaš zahtev.',
+    'Please contact us if you think this is a server error. Thank you.' => 'Molimo Vas kontaktirajte nas ukoliko mislite da je ovo greška našeg servera. Hvala.',
 
 ];

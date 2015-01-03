@@ -5,11 +5,6 @@ body {
     height: 100%;
 }
 
-#form h1, #form h2, #form h3, 
-#form h4, #form h5, #form h6 {
-    margin-left: 15px;
-}
-
 .wrap {
     min-height: 100%;
     height: auto;
@@ -156,6 +151,6 @@ div.required label:after {
 /* small strength meter display tweaks for this theme */
 #form-signup table,
 #form-user table,
-#reset-password table {
+#reset-password-form table {
     background-color: transparent;
 }
