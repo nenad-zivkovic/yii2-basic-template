@@ -27,14 +27,14 @@ class AccountActivation extends Model
     {
         if (empty($token) || !is_string($token)) 
         {
-            throw new InvalidParamException('Account activation token cannot be blank.');
+            throw new InvalidParamException(Yii::t('app', 'Account activation token cannot be blank.'));
         }
 
         $this->_user = User::findByAccountActivationToken($token);
 
         if (!$this->_user) 
         {
-            throw new InvalidParamException('Wrong account activation token. Please try again.');
+            throw new InvalidParamException(Yii::t('app', 'Wrong account activation token.'));
         }
 
         parent::__construct($config);

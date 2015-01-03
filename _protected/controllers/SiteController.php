@@ -113,11 +113,11 @@ class SiteController extends Controller
             if ($model->contact(Yii::$app->params['adminEmail'])) 
             {
                 Yii::$app->session->setFlash('success', 
-                    'Thank you for contacting us. We will respond to you as soon as possible.');
+                    Yii::t('app', 'Thank you for contacting us. We will respond to you as soon as possible.'));
             } 
             else 
             {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+                Yii::$app->session->setFlash('error', Yii::t('app', 'There was an error sending email.'));
             }
 
             return $this->refresh();
@@ -163,7 +163,7 @@ class SiteController extends Controller
         {
             // if his account is not activated, he will have to activate it first
             Yii::$app->session->setFlash('error', 
-                'You have to activate your account first. Please check your email.');
+                Yii::t('app', 'You have to activate your account first. Please check your email.'));
 
             return $this->refresh();
         }    
@@ -206,14 +206,14 @@ class SiteController extends Controller
             if ($model->sendEmail()) 
             {
                 Yii::$app->getSession()->setFlash('success', 
-                    'Check your email for further instructions.');
+                    Yii::t('app', 'Check your email for further instructions.'));
 
                 return $this->goHome();
             } 
             else 
             {
                 Yii::$app->getSession()->setFlash('error', 
-                    'Sorry, we are unable to reset password for email provided.');
+                    Yii::t('app', 'Sorry, we are unable to reset password for email provided.'));
             }
         }
         else
@@ -246,7 +246,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) 
             && $model->validate() && $model->resetPassword()) 
         {
-            Yii::$app->getSession()->setFlash('success', 'New password was saved.');
+            Yii::$app->getSession()->setFlash('success', Yii::t('app', 'New password was saved.'));
 
             return $this->goHome();
         }
@@ -308,7 +308,7 @@ class SiteController extends Controller
             {
                 // display error message to user
                 Yii::$app->session->setFlash('error', 
-                    "We couldn't sign you up, please contact us.");
+                    Yii::t('app', 'We couldn\'t sign you up, please contact us.'));
 
                 // log this error, so we can debug possible problem easier.
                 Yii::error('Signup failed! 
@@ -338,16 +338,15 @@ class SiteController extends Controller
         if ($model->sendAccountActivationEmail($user)) 
         {
             Yii::$app->session->setFlash('success', 
-                'Hello '.Html::encode($user->username).'. 
-                To be able to log in, you need to confirm your registration. 
-                Please check your email, we have sent you a message.');
+                Yii::t('app', 'Hello').' '.Html::encode($user->username). '. ' .
+                Yii::t('app', 'To be able to log in, you need to confirm your registration. Please check your email, we have sent you a message.'));
         }
         // email could not be sent
         else 
         {
             // display error message to user
             Yii::$app->session->setFlash('error', 
-                "We couldn't send you account activation email, please contact us.");
+                Yii::t('app', 'We couldn\'t send you account activation email, please contact us.'));
 
             // log this error, so we can debug possible problem easier.
             Yii::error('Signup failed! 
@@ -382,14 +381,15 @@ class SiteController extends Controller
         if ($user->activateAccount()) 
         {
             Yii::$app->getSession()->setFlash('success', 
-                'Success! You can now log in. 
-                Thank you '.Html::encode($user->username).' for joining us!');
+                Yii::t('app', 'Success! You can now log in.').' '.
+                Yii::t('app', 'Thank you').' '.Html::encode($user->username).' '.
+                Yii::t('app', 'for joining us!'));
         }
         else
         {
             Yii::$app->getSession()->setFlash('error', 
-                ''.Html::encode($user->username).' your account could not be activated, 
-                please contact us!');
+                Html::encode($user->username).
+                Yii::t('app', 'your account could not be activated, please contact us!'));
         }
 
         return $this->redirect('login');
