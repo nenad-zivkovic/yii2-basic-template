@@ -1,3 +1,4 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400");
 /*!
  * bootswatch v3.3.1+1
  * Homepage: http://bootswatch.com
@@ -898,7 +899,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #c8c8c8;
@@ -921,6 +922,7 @@ a:focus {
   color: #2FA4E7;
 }
 a:focus {
+  outline: none;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -995,7 +997,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -2338,6 +2340,7 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
+  outline: none;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2770,6 +2773,7 @@ select[multiple].form-group-lg .form-control {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
+  outline: none;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -5586,7 +5590,7 @@ button.close {
   z-index: 1070;
   display: block;
   visibility: visible;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
@@ -5693,7 +5697,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
