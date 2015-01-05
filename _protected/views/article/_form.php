@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Tutorial */
+/* @var $model app\models\Article */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -13,20 +13,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
+        <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'summary')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'summary')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'content')->widget(CKEditor::className(),
-        ['editorOptions' => [ 'preset' => 'full', 'inline' => false]]); ?>
-
+        <?= $form->field($model, 'content')->widget(CKEditor::className(),
+            ['editorOptions' => [ 'preset' => 'full', 'inline' => false]]); ?>
 
     <div class="row">
     <div class="col-lg-6">
 
-    <?= $form->field($model, 'status')->dropDownList($model->statusList) ?>
+        <?= $form->field($model, 'status')->dropDownList($model->statusList) ?>
 
-    <?= $form->field($model, 'category')->dropDownList($model->categoryList) ?>
+        <?= $form->field($model, 'category')->dropDownList($model->categoryList) ?>
 
     </div>
     </div> 

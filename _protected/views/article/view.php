@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -16,10 +15,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="pull-right">
 
-    <?php if (Yii::$app->user->can('admin')): ?>
+    <?php if (Yii::$app->user->can('adminArticle')): ?>
 
-        <?= Html::a(Yii::t('app', 'Admin'), ['admin'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a(Yii::t('app', 'Go back'), ['admin'], ['class' => 'btn btn-info']) ?>
+
+    <?php endif ?>
+
+    <?php if (Yii::$app->user->can('updateArticle', ['model' => $model])): ?>
+
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
+    <?php endif ?>
+
+    <?php if (Yii::$app->user->can('deleteArticle')): ?>
+
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

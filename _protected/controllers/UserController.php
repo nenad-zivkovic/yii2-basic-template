@@ -165,7 +165,7 @@ class UserController extends AppController
      * @param  integer $id The user id.
      * @return User The loaded model.
      *
-     * @throws NotFoundHttpException
+     * @throws NotFoundHttpException if the model cannot be found.
      */
     protected function findModel($id)
     {

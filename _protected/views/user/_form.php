@@ -11,9 +11,6 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="user-form">
 
-    <div class="row">
-    <div class="col-lg-12">
-
     <?php $form = ActiveForm::begin(['id' => 'form-user']); ?>
 
         <?= $form->field($user, 'username') ?>
@@ -28,8 +25,6 @@ use yii\widgets\ActiveForm;
                      'placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
             ?>       
         <?php endif ?>
-    </div>
-    </div>
 
     <div class="row">
     <div class="col-lg-6">
@@ -41,17 +36,17 @@ use yii\widgets\ActiveForm;
         <?php endforeach ?>
         <?= $form->field($role, 'item_name')->dropDownList($roles) ?>
 
+    </div>
+    </div>
+
     <div class="form-group">     
-        <?= Html::submitButton($user->isNewRecord ? Yii::t('app', 'Create') : 
-            Yii::t('app', 'Update'), ['class' => $user->isNewRecord ? 
-            'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($user->isNewRecord ? Yii::t('app', 'Create') 
+            : Yii::t('app', 'Update'), ['class' => $user->isNewRecord 
+            ? 'btn btn-success' : 'btn btn-primary']) ?>
 
         <?= Html::a(Yii::t('app', 'Cancel'), ['user/index'], ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-    </div>
-    </div>
-    
+ 
 </div>

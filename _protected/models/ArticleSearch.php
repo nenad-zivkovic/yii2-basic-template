@@ -1,11 +1,10 @@
 <?php
-
 namespace app\models;
 
-use Yii;
+use app\models\Article;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Article;
+use Yii;
 
 /**
  * ArticleSearch represents the model behind the search form about `app\models\Article`.
@@ -13,7 +12,9 @@ use app\models\Article;
 class ArticleSearch extends Article
 {
     /**
-     * @inheritdoc
+     * Returns the validation rules for attributes.
+     *
+     * @return array
      */
     public function rules()
     {
@@ -24,7 +25,9 @@ class ArticleSearch extends Article
     }
 
     /**
-     * @inheritdoc
+     * Returns a list of scenarios and the corresponding active attributes.
+     *
+     * @return array
      */
     public function scenarios()
     {

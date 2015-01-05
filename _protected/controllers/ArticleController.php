@@ -16,6 +16,7 @@ class ArticleController extends AppController
 {
     /**
      * Lists all Article models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -33,7 +34,8 @@ class ArticleController extends AppController
 
     /**
      * Displays a single Article model.
-     * @param integer $id
+     * 
+     * @param  integer $id
      * @return mixed
      */
     public function actionView($id)
@@ -46,6 +48,7 @@ class ArticleController extends AppController
     /**
      * Creates a new Article model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * 
      * @return mixed
      */
     public function actionCreate()
@@ -69,8 +72,11 @@ class ArticleController extends AppController
     /**
      * Updates an existing Article model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * 
+     * @param  integer $id
      * @return mixed
+     *
+     * @throws NotFoundHttpException
      */
     public function actionUpdate($id)
     {
@@ -98,8 +104,11 @@ class ArticleController extends AppController
     /**
      * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * 
+     * @param  integer $id
      * @return mixed
+     *
+     * @throws NotFoundHttpException
      */
     public function actionDelete($id)
     {
@@ -129,15 +138,20 @@ class ArticleController extends AppController
     /**
      * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Article the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * 
+     * @param integer  $id
+     * @return Article The loaded model.
+     * 
+     * @throws NotFoundHttpException if the model cannot be found.
      */
     protected function findModel($id)
     {
-        if (($model = Article::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) 
+        {
             return $model;
-        } else {
+        } 
+        else 
+        {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }

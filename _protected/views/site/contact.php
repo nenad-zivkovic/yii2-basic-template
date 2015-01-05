@@ -14,32 +14,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-        <div class="well bs-component">
+    <div class="col-lg-5 well bs-component">
 
-            <p>
-                <?= Yii::t('app', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
-            </p>
+        <p>
+            <?= Yii::t('app', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
+        </p>
 
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+        <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                <?= $form->field($model, 'name') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'subject') ?>
-                <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-4">{image}</div><div class="col-lg-6">{input}</div></div>',
-                ]) ?>
+            <?= $form->field($model, 'name') ?>
+            <?= $form->field($model, 'email') ?>
+            <?= $form->field($model, 'subject') ?>
+            <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
+            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                'template' => '<div class="row"><div class="col-lg-4">{image}</div><div class="col-lg-6">{input}</div></div>',
+            ]) ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+            </div>
 
-            <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
-        </div>
-        </div>
     </div>
 
 </div>

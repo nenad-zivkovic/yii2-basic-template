@@ -30,7 +30,9 @@ class Article extends ActiveRecord
     const CATEGORY_SPORT = 3;
 
     /**
-     * @inheritdoc
+     * Declares the name of the database table associated with this AR class.
+     *
+     * @return string
      */
     public static function tableName()
     {
@@ -38,7 +40,9 @@ class Article extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Returns the validation rules for attributes.
+     *
+     * @return array
      */
     public function rules()
     {
@@ -63,7 +67,9 @@ class Article extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Returns the attribute labels.
+     *
+     * @return array
      */
     public function attributeLabels()
     {
@@ -100,7 +106,7 @@ class Article extends ActiveRecord
     }
 
     /**
-     * Gets the author name from the related Profile table.
+     * Gets the author name from the related User table.
      * 
      * @return mixed
      */
@@ -183,5 +189,4 @@ class Article extends ActiveRecord
 
         return $statusArray;
     }
-
 }

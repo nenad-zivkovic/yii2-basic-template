@@ -12,26 +12,22 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-reset-password">
 
-    <div class="row">
-        <div class="col-lg-5 col-md-10">
-        <div class="well bs-component">
+    <div class="col-lg-5 well bs-component">
 
-            <h1><?= Html::encode($this->title) ?></h1>
+        <h1><?= Html::encode($this->title) ?></h1>
 
-            <p><?= Yii::t('app', 'Please choose your new password:') ?></p>
+        <p><?= Yii::t('app', 'Please choose your new password:') ?></p>
 
-            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+        <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-                <?= $form->field($model, 'password')->widget(PasswordInput::classname(), []) ?>
+            <?= $form->field($model, 'password')->widget(PasswordInput::classname(), []) ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
-                </div>
-                
-            <?php ActiveForm::end(); ?>
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
+            </div>
+            
+        <?php ActiveForm::end(); ?>
 
-        </div>
-        </div>
     </div>
 
 </div>

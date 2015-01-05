@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= Html::encode($this->title) ?>
 
     <span class="pull-right">
-            <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </span>         
 
     </h1>
