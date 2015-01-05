@@ -26,13 +26,21 @@ class AppController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'controllers' => ['user'],
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'controllers' => ['user', 'article'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'admin'],
                         'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->can('admin');
-                        },
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'controllers' => ['article'],
+                        'actions' => ['create', 'update', 'admin'],
+                        'allow' => true,
+                        'roles' => ['editor'],
+                    ],
+                    [
+                        'controllers' => ['article'],
+                        'actions' => ['index', 'view'],
+                        'allow' => true
                     ],
                     [
                         // other rules

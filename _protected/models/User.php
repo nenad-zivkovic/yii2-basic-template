@@ -10,7 +10,8 @@ use Yii;
  * This is the user model class extending UserIdentity.
  * Here you can implement your custom user solutions.
  * 
- * @property $role Role
+ * @property Role[] $role
+ * @property Article[] $articles
  */
 class User extends UserIdentity
 {
@@ -110,6 +111,14 @@ class User extends UserIdentity
         // User has_one Role via Role.user_id -> id
         return $this->hasOne(Role::className(), ['user_id' => 'id']);
     }  
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Article::className(), ['user_id' => 'id']);
+    }
 
 //------------------------------------------------------------------------------------------------//
 // USER FINDERS

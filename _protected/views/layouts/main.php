@@ -36,12 +36,19 @@ AppAsset::register($this);
             // everyone can see Home page
             $menuItems[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']];
 
-            // we do not need to display About and Contact pages to admins
-            if (!Yii::$app->user->can('admin')) 
+            // we do not need to display About and Contact pages to editor+ roles
+            if (!Yii::$app->user->can('editor')) 
             {
+                $menuItems[] = ['label' => Yii::t('app', 'Articles'), 'url' => ['/article/index']];
                 $menuItems[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
                 $menuItems[] = ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']];
             }
+
+            // display Users to admin+ roles
+            if (Yii::$app->user->can('editor'))
+            {
+                $menuItems[] = ['label' => Yii::t('app', 'Articles'), 'url' => ['/article/admin']];
+            }            
 
             // display Users to admin+ roles
             if (Yii::$app->user->can('admin'))

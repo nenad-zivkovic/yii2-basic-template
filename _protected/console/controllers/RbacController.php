@@ -6,22 +6,30 @@ use yii\console\Controller;
 use Yii;
 
 /**
- * Creates base roles and permissions for our application.
+ * Creates base rbac authorization data for our application.
  * -----------------------------------------------------------------------------
- * Creates 5 roles:
+ * Creates 6 roles:
  *
  * - theCreator : you, developer of this site (super admin)
  * - admin      : your direct clients, administrators of this site
+ * - editor     : editor of this site
  * - support    : support staff
  * - premium    : premium member of this site
  * - member     : user of this site who has registered his account and can log in
  *
- * Creates 2 permissions:
+ * Creates 7 permissions:
  *
  * - usePremiumContent  : allows premium members to use premium content
- * - manageUsers        : allows admins to manage users (CRUD plus role assignment)
+ * - createArticle      : allows editor+ roles to create articles
+ * - updateOwnArticle   : allows editor+ roles to update own articles
+ * - updateArticle      : allows admin+ roles to update all articles
+ * - deleteArticle      : allows admin+ roles to delete articles
+ * - adminArticle       : allows admin+ roles to manage articles
+ * - manageUsers        : allows admin+ roles to manage users (CRUD plus role assignment)
  *
- * @package app\console\controllers
+ * Creates 1 rule:
+ *
+ * - AuthorRule : allows editor+ roles to update their own content
  */
 class RbacController extends Controller
 {
@@ -32,18 +40,52 @@ class RbacController extends Controller
     {
         $auth = Yii::$app->authManager;
 
+        //---------- RULES ----------//
+
+        // add the rule
+        $rule = new \app\rbac\rules\AuthorRule;
+        $auth->add($rule);
+
         //---------- PERMISSIONS ----------//
 
         // add "usePremiumContent" permission
         $usePremiumContent = $auth->createPermission('usePremiumContent');
-        $usePremiumContent->description = 'View Users';
+        $usePremiumContent->description = 'Allows premium+ roles to use premium content';
         $auth->add($usePremiumContent);
 
         // add "manageUsers" permission
         $manageUsers = $auth->createPermission('manageUsers');
-        $manageUsers->description = 'View Users';
+        $manageUsers->description = 'Allows admin+ roles to manage users';
         $auth->add($manageUsers);
-    
+
+        // add "createArticle" permission
+        $createArticle = $auth->createPermission('createArticle');
+        $createArticle->description = 'Allows editor+ roles to create articles';
+        $auth->add($createArticle);
+ 
+        // add the "updateOwnArticle" permission and associate the rule with it.
+        $updateOwnArticle = $auth->createPermission('updateOwnArticle');
+        $updateOwnArticle->description = 'Update own article';
+        $updateOwnArticle->ruleName = $rule->name;
+        $auth->add($updateOwnArticle);
+
+        // add "updateArticle" permission
+        $updateArticle = $auth->createPermission('updateArticle');
+        $updateArticle->description = 'Allows editor+ roles to update articles';
+        $auth->add($updateArticle);
+        // "updateOwnArticle" will be used from "updateArticle"
+        $auth->addChild($updateOwnArticle, $updateArticle);
+
+        // add "deleteArticle" permission
+        $deleteArticle = $auth->createPermission('deleteArticle');
+        $deleteArticle->description = 'Allows admin+ roles to delete articles';
+        $auth->add($deleteArticle);
+
+        // add "adminArticle" permission
+        $adminArticle = $auth->createPermission('adminArticle');
+        $adminArticle->description = 'Allows admin+ roles to manage articles';
+        $auth->add($adminArticle);                
+
         //---------- ROLES ----------//
 
         // add "member" role
@@ -65,13 +107,25 @@ class RbacController extends Controller
         $auth->addChild($support, $premium);
         $auth->addChild($support, $member);    
 
+        // add "editor" role and give this role: 
+        // createArticle and updateOwnArticle permissions, plus he can do everything that support role can do.
+        $editor = $auth->createRole('editor');
+        $editor->description = 'Editor of this application';
+        $auth->add($editor);
+        $auth->addChild($editor, $createArticle);
+        $auth->addChild($editor, $updateOwnArticle);
+        $auth->addChild($editor, $support);
+
         // add "admin" role and give this role: 
-        // manageUsers permission, plus he can do everything that support role can do.
+        // manageUsers, updateArticle, deleteArticle and adminArticle permissions, plus he can do everything that editor role can do.
         $admin = $auth->createRole('admin');
         $admin->description = 'Administrator of this application';
         $auth->add($admin);
         $auth->addChild($admin, $manageUsers);
-        $auth->addChild($admin, $support);
+        $auth->addChild($editor, $updateArticle);
+        $auth->addChild($editor, $deleteArticle);
+        $auth->addChild($editor, $adminArticle);
+        $auth->addChild($admin, $editor);
 
         // add "theCreator" role ( this is you :) )
         // You can do everything that admin can do plus more (if You decide so)

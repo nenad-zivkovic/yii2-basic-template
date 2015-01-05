@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700");
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
 /*!
  * bootswatch v3.3.1+1
  * Homepage: http://bootswatch.com
@@ -3648,7 +3648,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 10px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4176,6 +4176,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a {
   color: #444;
+  font-weight: 600;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4272,6 +4273,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #dddddd;
+  font-weight: 600;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -6360,8 +6362,8 @@ button.close {
 }
 .navbar-nav > li > a,
 .navbar-nav > li > a:hover {
-  padding-top: 17px;
-  padding-bottom: 13px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   -webkit-transition: color ease-in-out 0.2s;
   -o-transition: color ease-in-out 0.2s;
   transition: color ease-in-out 0.2s;

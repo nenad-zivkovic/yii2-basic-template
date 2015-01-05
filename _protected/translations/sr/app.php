@@ -10,9 +10,11 @@ return [
     'Create' => 'Napravi',
     'Send'   => 'Pošalji',
     'Save'   => 'Sačuvaj',
+    'Menu'   => 'Meni',
 
     //-- CMS buttons --//
     'Create User' => 'Napravi nalog',
+    'Create Article' => 'Napravi članak',
 
     //-- top menu --//
     'Home'     => 'Početna',
@@ -21,7 +23,7 @@ return [
     'Login'    => 'Prijava',
     'Logout'   => 'Odjavi se',
     'Users'    => 'Korisnici',
-    'Articles' => 'Vesti',
+    'Articles' => 'Članci',
     'Register' => 'Registracija',
 
     //-- static pages --//
@@ -88,11 +90,35 @@ return [
     'Update User' => 'Izmeni nalog korisnika',
     'New pwd ( if you want to change it )' => 'Nova lozinka ( ako je menjate )',
 
+    //-- articles --//
+    'Title'    => 'Naslov',
+    'Summary'  => 'Rezime',
+    'Content'  => 'Sadržaj',
+    'Status'   => 'Status',
+    'Category' => 'Kategorija',
+    'Author'   => 'Autor',
+    'articles' => 'članci',
+    'news'     => 'vesti',
+    'The best news available' => 'Najbolje vesti na tržištu',
+    'We haven\'t created any articles yet.' => 'Još uvek nismo napisali nijedan članak.',
+
+    // statuses
+    'Draft'     => 'Nacrt',
+    'Published' => 'Objavljen',
+    'Archived'  => 'Arhiviran',
+
+    // categories
+    'Economy' => 'Ekonomija',
+    'Society' => 'Društvo',
+    'Sport'   => 'Sport',
+
     //-- errors --//
     'The above error occurred while the Web server was processing your request.' => 'Dogodila se gore pomenuta greška kada je server pokušao da izvrši Vaš zahtev.',
     'Please contact us if you think this is a server error. Thank you.' => 'Molimo Vas kontaktirajte nas ukoliko mislite da je ovo greška našeg servera. Hvala.',
+    'You are not allowed to access this page.' => 'Nije Vam dozvoljeno da vidite ovu stranicu',
 
     //-- delete messages --//
     'Are you sure you want to delete this user?' => 'Da li ste sigurni da želite da obrišete ovog korisnika?',
-    
+    'Are you sure you want to delete this article?' => 'Da li ste sigurni da želite da obrišete ovu vest?',
+
 ];

@@ -1,4 +1,4 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:400");
+@import url("//fonts.googleapis.com/css?family=Open+Sans:400,600");
 /*!
  * bootswatch v3.3.1+1
  * Homepage: http://bootswatch.com
@@ -4176,6 +4176,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a {
   color: #ffffff;
+  font-weight: 600;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -4272,6 +4273,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a {
   color: #ffffff;
+  font-weight: 600;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
