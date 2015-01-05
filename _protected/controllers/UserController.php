@@ -68,7 +68,7 @@ class UserController extends AppController
                 $role->save(); 
             }  
 
-            return $this->redirect(['view', 'id' => $user->id]);      
+            return $this->redirect('index');      
         } 
         else 
         {

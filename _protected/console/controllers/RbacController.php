@@ -62,19 +62,6 @@ class RbacController extends Controller
         $createArticle = $auth->createPermission('createArticle');
         $createArticle->description = 'Allows editor+ roles to create articles';
         $auth->add($createArticle);
- 
-        // add the "updateOwnArticle" permission and associate the rule with it.
-        $updateOwnArticle = $auth->createPermission('updateOwnArticle');
-        $updateOwnArticle->description = 'Update own article';
-        $updateOwnArticle->ruleName = $rule->name;
-        $auth->add($updateOwnArticle);
-
-        // add "updateArticle" permission
-        $updateArticle = $auth->createPermission('updateArticle');
-        $updateArticle->description = 'Allows editor+ roles to update articles';
-        $auth->add($updateArticle);
-        // "updateOwnArticle" will be used from "updateArticle"
-        $auth->addChild($updateOwnArticle, $updateArticle);
 
         // add "deleteArticle" permission
         $deleteArticle = $auth->createPermission('deleteArticle');
@@ -84,7 +71,21 @@ class RbacController extends Controller
         // add "adminArticle" permission
         $adminArticle = $auth->createPermission('adminArticle');
         $adminArticle->description = 'Allows admin+ roles to manage articles';
-        $auth->add($adminArticle);                
+        $auth->add($adminArticle);  
+
+        // add "updateArticle" permission
+        $updateArticle = $auth->createPermission('updateArticle');
+        $updateArticle->description = 'Allows editor+ roles to update articles';
+        $auth->add($updateArticle);
+
+        // add the "updateOwnArticle" permission and associate the rule with it.
+        $updateOwnArticle = $auth->createPermission('updateOwnArticle');
+        $updateOwnArticle->description = 'Update own article';
+        $updateOwnArticle->ruleName = $rule->name;
+        $auth->add($updateOwnArticle);
+
+        // "updateOwnArticle" will be used from "updateArticle"
+        $auth->addChild($updateOwnArticle, $updateArticle);
 
         //---------- ROLES ----------//
 
@@ -112,20 +113,20 @@ class RbacController extends Controller
         $editor = $auth->createRole('editor');
         $editor->description = 'Editor of this application';
         $auth->add($editor);
+        $auth->addChild($editor, $support);
         $auth->addChild($editor, $createArticle);
         $auth->addChild($editor, $updateOwnArticle);
-        $auth->addChild($editor, $support);
 
         // add "admin" role and give this role: 
         // manageUsers, updateArticle, deleteArticle and adminArticle permissions, plus he can do everything that editor role can do.
         $admin = $auth->createRole('admin');
         $admin->description = 'Administrator of this application';
         $auth->add($admin);
-        $auth->addChild($admin, $manageUsers);
-        $auth->addChild($editor, $updateArticle);
-        $auth->addChild($editor, $deleteArticle);
-        $auth->addChild($editor, $adminArticle);
         $auth->addChild($admin, $editor);
+        $auth->addChild($admin, $manageUsers);
+        $auth->addChild($admin, $updateArticle);
+        $auth->addChild($admin, $deleteArticle);
+        $auth->addChild($admin, $adminArticle);
 
         // add "theCreator" role ( this is you :) )
         // You can do everything that admin can do plus more (if You decide so)
