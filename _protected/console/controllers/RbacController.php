@@ -116,6 +116,7 @@ class RbacController extends Controller
         $auth->addChild($editor, $support);
         $auth->addChild($editor, $createArticle);
         $auth->addChild($editor, $updateOwnArticle);
+        $auth->addChild($editor, $adminArticle);
 
         // add "admin" role and give this role: 
         // manageUsers, updateArticle, deleteArticle and adminArticle permissions, plus he can do everything that editor role can do.
@@ -126,7 +127,6 @@ class RbacController extends Controller
         $auth->addChild($admin, $manageUsers);
         $auth->addChild($admin, $updateArticle);
         $auth->addChild($admin, $deleteArticle);
-        $auth->addChild($admin, $adminArticle);
 
         // add "theCreator" role ( this is you :) )
         // You can do everything that admin can do plus more (if You decide so)

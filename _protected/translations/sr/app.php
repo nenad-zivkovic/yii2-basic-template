@@ -11,6 +11,7 @@ return [
     'Send'   => 'Pošalji',
     'Save'   => 'Sačuvaj',
     'Menu'   => 'Meni',
+    'Back'   => 'Nazad',
 
     //-- CMS buttons --//
     'Create User' => 'Napravi nalog',
