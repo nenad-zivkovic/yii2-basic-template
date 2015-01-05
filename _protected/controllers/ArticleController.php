@@ -21,10 +21,20 @@ class ArticleController extends AppController
      */
     public function actionIndex()
     {
-        $pageSize = 2; // How many articles we want to display per page.
+        /**
+         * How many articles we want to display per page.
+         * @var integer
+         */
+        $pageSize = 2;
+
+        /**
+         * Articles have to be published.
+         * @var boolean
+         */
+        $published = true;
 
         $searchModel = new ArticleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize, $published);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -124,7 +134,11 @@ class ArticleController extends AppController
      */
     public function actionAdmin()
     {
-        $pageSize = 11; // How many articles we want to display per page.
+        /**
+         * How many articles we want to display per page.
+         * @var integer
+         */
+        $pageSize = 11;
 
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize);

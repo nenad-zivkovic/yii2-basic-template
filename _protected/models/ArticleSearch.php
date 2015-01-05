@@ -39,13 +39,14 @@ class ArticleSearch extends Article
      * Creates data provider instance with search query applied
      *
      * @param array   $params
-     * @param integer $pageSize The number of results to be displayed per page.
+     * @param integer $pageSize  The number of results to be displayed per page.
+     * @param boolean $published Whether or not articles have to be published.
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $pageSize = 3)
+    public function search($params, $pageSize = 3, $published = false)
     {
-        $query = Article::find();
+        $query = ($published) ? Article::find()->where(['status' => Article::STATUS_PUBLISHED]) : Article::find() ;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
