@@ -16,6 +16,8 @@ $this->title = 'Articles';
 
     <p><?= $model->summary ?></p>
 
+    <br>
+
     <a class="btn btn-primary" href=<?= Url::to(['article/view', 'id' => $model->id]) ?>>
         Read More <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
