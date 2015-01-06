@@ -46,7 +46,15 @@ class ArticleSearch extends Article
      */
     public function search($params, $pageSize = 3, $published = false)
     {
-        $query = ($published) ? Article::find()->where(['status' => Article::STATUS_PUBLISHED]) : Article::find() ;
+        $query = Article::find();
+
+        // this means that editor is trying to see articles
+        // we will allow him to see published ones and drafts made by him
+        if ($published === true) 
+        {
+            $query->where(['status' => Article::STATUS_PUBLISHED]);
+            $query->orWhere(['user_id' => Yii::$app->user->id]);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

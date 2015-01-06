@@ -3,9 +3,7 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\MethodNotAllowedHttpException;
 use Yii;
 
@@ -124,7 +122,7 @@ class ArticleController extends AppController
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['admin']);
+        return $this->redirect('admin');
     }
 
     /**
@@ -140,8 +138,15 @@ class ArticleController extends AppController
          */
         $pageSize = 11;
 
+        /**
+         * Only admin+ roles can see everything.
+         * Editors will be able to see only published articles and their own drafts @see: search(). 
+         * @var boolean
+         */
+        $published = (Yii::$app->user->can('admin')) ? false : true ;
+
         $searchModel = new ArticleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize, $published);
 
         return $this->render('admin', [
             'searchModel' => $searchModel,
