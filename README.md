@@ -19,9 +19,11 @@ Features
     - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
     - Roles can be easily assigned to users by administrators of the site.
     - Nice example of how to use rbac in your code is given in this application. See: AppController.
+- Users with editor+ roles can create articles.
 - Session data is stored in _protected/session folder ( changes from v2 ).
 - System setting are stored in config/params.php file ( changes from v2 ).
-- Theming is supported out of box.
+- Theming is supported out of the box.
+- Translation is supported out of the box.
 - Administrators and The Creator can manage users ( changes from v2 ).
 - Password strength validation and strength meter.
 - Code is heavily commented out.
