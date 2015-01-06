@@ -3,6 +3,7 @@
  * Bootstrap v3.3.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Customized by Nenad Zivkovic
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -1103,7 +1104,7 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 0px;
+  margin: 0 0 10px;
 }
 .lead {
   margin-bottom: 20px;
