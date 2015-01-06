@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // status
             [
                 'attribute'=>'status',
-                'filter' => $searchModel->statusList(),
+                'filter' => $searchModel->statusList,
                 'value' => function ($data) {
                     return $data->statusName;
                 },
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // role
             [
                 'attribute'=>'item_name',
-                'filter' => $searchModel->rolesList(),
+                'filter' => $searchModel->rolesList,
                 'value' => function ($data) {
                     return $data->roleName;
                 },

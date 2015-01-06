@@ -113,6 +113,8 @@ class User extends UserIdentity
     }  
 
     /**
+     * Relation with Article model.
+     * 
      * @return \yii\db\ActiveQuery
      */
     public function getArticles()
@@ -212,7 +214,7 @@ class User extends UserIdentity
      *
      * @return array
      */
-    public function statusList()
+    public function getStatusList()
     {
         $statusArray = [
             self::STATUS_ACTIVE     => 'Active',

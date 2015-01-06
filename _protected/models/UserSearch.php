@@ -12,13 +12,6 @@ use Yii;
 class UserSearch extends User
 {
     /**
-     * How many users we want to display per page.
-     *
-     * @var int
-     */
-    private $_pageSize = 11;
-
-    /**
      * Returns the validation rules for attributes.
      *
      * @return array
@@ -47,24 +40,21 @@ class UserSearch extends User
      * @param  array $params
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $pageSize = 10, $theCreator = false)
     {
-        // we make sure that admin can not see users with theCreator role
-        if (!Yii::$app->user->can('theCreator')) 
+        $query = User::find()->joinWith('role');
+
+        // we make sure that admin- roles can not see users with theCreator role
+        if ($theCreator === false) 
         {
-            $query = User::find()->joinWith('role')
-                                 ->where(['!=', 'item_name', 'theCreator']);
-        }
-        else
-        {
-            $query = User::find()->joinWith('role');
+            $query->where(['!=', 'item_name', 'theCreator']);
         }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_ASC]],
             'pagination' => [
-                'pageSize' => $this->_pageSize,
+                'pageSize' => $pageSize,
             ]
         ]);
 
@@ -99,7 +89,7 @@ class UserSearch extends User
      *
      * @return mixed
      */
-    public static function rolesList()
+    public static function getRolesList()
     {
         $roles = [];
 

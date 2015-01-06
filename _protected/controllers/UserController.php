@@ -20,8 +20,21 @@ class UserController extends AppController
      */
     public function actionIndex()
     {
+        /**
+         * How many users we want to display per page.
+         * @var int
+         */
+        $pageSize = 11;
+
+        /**
+         * Only theCreator role can see all users.
+         * Lower roles will not be able to see theCreator @see: search(). 
+         * @var boolean
+         */
+        $theCreator = (Yii::$app->user->can('theCreator')) ? true : false ;
+
         $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $pageSize, $theCreator);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

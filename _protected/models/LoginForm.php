@@ -85,7 +85,7 @@ class LoginForm extends Model
     {
         if ($this->validate())
         {
-            // get user status if he exists, otherwise assign not active as default
+            // get user status if user exists, otherwise assign not active as default
             $this->status = ($user = $this->getUser()) ? $user->status : User::STATUS_NOT_ACTIVE;
 
             // if we have active and valid user log him in

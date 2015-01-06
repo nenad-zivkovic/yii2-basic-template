@@ -21,15 +21,14 @@ use yii\widgets\ActiveForm;
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), []) ?>
         <?php else: ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), [])
-                     ->passwordInput([
-                     'placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
+                     ->passwordInput(['placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
             ?>       
         <?php endif ?>
 
     <div class="row">
     <div class="col-lg-6">
 
-        <?= $form->field($user, 'status')->dropDownList($user->statusList()) ?>
+        <?= $form->field($user, 'status')->dropDownList($user->statusList) ?>
 
         <?php foreach (AuthItem::getRoles() as $item_name): ?>
             <?php $roles[$item_name->name] = $item_name->name ?>
