@@ -69,8 +69,7 @@ class UserController extends AppController
         $role = new Role();
 
         if ($user->load(Yii::$app->request->post()) && 
-            $role->load(Yii::$app->request->post()) &&
-            Model::validateMultiple([$user, $role]))
+            $role->load(Yii::$app->request->post()) && Model::validateMultiple([$user, $role]))
         {
             $user->setPassword($user->password);
             $user->generateAuthKey();

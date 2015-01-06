@@ -5,7 +5,7 @@ Yii2-basic-template is based on yii2-app-basic created by yii2 core developers.
 There are several upgrades made to this template.
 
 1. This template comes with almost all features that default yii2-app-advanced has.
-2. It has additional features listed at the end of this guide.
+2. It has additional features listed in the next section of this guide.
 3. Application structure has been changed to be 'shared hosting friendly'.
 
 Features
@@ -105,11 +105,20 @@ _protected
     rbac/                contains role based access control classes
     runtime/             contains files generated during runtime
     tests/               contains various tests for the basic application
+    translations/        contains application translations
     views/               contains view files for the Web application
     widgets/             contains widgets
 assets                   contains application assets generated during runtime
 themes                   contains your themes
 ```
+
+Version 2.1.0 changes
+-------------------
+1) option to CRUD articles ( posts ) has been added  
+2) translation support has been included and Serbian translation has been added  
+3) themes has been improved  
+4) new roles, permissions and rules are added  
+5) other code refactoring has been done  
 
 Version 2.0 changes
 -------------------
