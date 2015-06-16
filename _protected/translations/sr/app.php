@@ -102,8 +102,6 @@ return [
     'news'     => 'vesti',
     'The best news available' => 'Najbolje vesti na tržištu',
     'We haven\'t created any articles yet.' => 'Još uvek nismo napisali nijedan članak.',
-    'Read more'    => 'Pročitaj sve',
-    'Published on' => 'Objavljen',
 
     // statuses
     'Draft'     => 'Nacrt',
