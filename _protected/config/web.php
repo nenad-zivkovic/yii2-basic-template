@@ -98,6 +98,12 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
+
+    // set allias for our uploads folder 
+    // @appRoot alias is definded in config/bootstrap.php file
+    'aliases' => [
+        '@uploads' => '@appRoot/uploads'
+    ],
 ];
 
 if (YII_ENV_DEV) {
