@@ -112,7 +112,14 @@ _protected
     widgets/             contains widgets
 assets                   contains application assets generated during runtime
 themes                   contains your themes
+uploads                  contains various files that can be uploaded by application users
 ```
+Version 2.2.0 changes
+-------------------
+1) Adds `uploads` folder to the application root
+   Also, @uploads alias has been added, so you can use it in your code ( will target your_app_name/uploads folder )
+2) Additional translations are included. Thanks to MeFuMo and hior
+4) Minor fixes
 
 Version 2.1.0 changes
 -------------------
@@ -147,3 +154,5 @@ But this is not all. As The Creator you have option in your settings "Force Stro
 Choosing presets:
 
 By default normal preset is used for signup and user create/update forms. For password reset we are using 'reset' preset if you want to customize which presets is used, see SignupForm model, User model and ResetPasswordForm model. You will see rules declared for using strong passwords. Presets are located in ```vendor/nenad/yii2-password-strength/presets.php```. You can chose some other preset declared in presets.php, or create new ones.
+
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
