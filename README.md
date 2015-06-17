@@ -116,10 +116,10 @@ uploads                  contains various files that can be uploaded by applicat
 ```
 Version 2.2.0 changes
 -------------------
-1) Adds `uploads` folder to the application root
-   Also, @uploads alias has been added, so you can use it in your code ( will target your_app_name/uploads folder )
-2) Additional translations are included. Thanks to MeFuMo and hior
-4) Minor fixes
+1) Adds `uploads` folder to the application root.  
+2) Adds, `@uploads` alias has been added, so you can use it in your code ( will target your_app_name/uploads folder ) 
+3) Additional translations are included. Thanks to MeFuMo and hior   
+4) Minor fixes  
 
 Version 2.1.0 changes
 -------------------
