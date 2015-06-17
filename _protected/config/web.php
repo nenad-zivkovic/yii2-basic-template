@@ -1,4 +1,5 @@
 <?php
+Yii::setAlias('appRoot', '/'.basename(dirname(dirname(__DIR__))));
 
 $params = require(__DIR__ . '/params.php');
 
