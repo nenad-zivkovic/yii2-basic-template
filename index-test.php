@@ -10,7 +10,6 @@ defined('YII_ENV') or define('YII_ENV', 'test');
 
 require(__DIR__ . '/_protected/vendor/autoload.php');
 require(__DIR__ . '/_protected/vendor/yiisoft/yii2/Yii.php');
-require(__DIR__ . '/_protected/config/bootstrap.php');
 
 $config = require(__DIR__ . '/_protected/tests/codeception/config/acceptance.php');
 
