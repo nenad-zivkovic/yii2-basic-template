@@ -47,8 +47,8 @@ return [
         'auth_key' => 'AxCA1v9zj3183w1bttOIcsGGrvrwkm-u',
         // password is : test123
         'password_hash' => '$2y$13$L7u5zjs0hMHVuMWaJzt2MuOvsgpkpEqIW0ir9pcMAeK16zDPoHmJu',
-        'password_reset_token' => 'OZdsAZ6RgiYbe08y8DOAwfUo6bnJvfed_1412601762',
-        'account_activation_token' => 'XOebma0o0S6cf4Q5mmxLwh7Jum7wXGg-_1413919102',
+        'password_reset_token' => '4BSNyiZNAuxjs5Mty990c47sVrgllIi_' . time(),
+        'account_activation_token' => 'xqVzjequF5PNR8jsLDUczmJkxPuQMStl_' . time(),
         'status' => 1,
         'created_at' => '1413919102',
         'updated_at' => '1413919102',

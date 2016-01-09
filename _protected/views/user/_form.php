@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $user app\models\User */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $role app\rbac\models\Role; */
 ?>
 <div class="user-form">
 
@@ -17,12 +16,11 @@ use yii\widgets\ActiveForm;
         
         <?= $form->field($user, 'email') ?>
 
-        <?php if ($user->scenario === 'create'): ?>
+        <?php if (!$user->scenario === 'create'): ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), []) ?>
         <?php else: ?>
             <?= $form->field($user, 'password')->widget(PasswordInput::classname(), [])
-                     ->passwordInput(['placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) 
-            ?>       
+                     ->passwordInput(['placeholder' => Yii::t('app', 'New pwd ( if you want to change it )')]) ?>       
         <?php endif ?>
 
     <div class="row">
@@ -33,7 +31,7 @@ use yii\widgets\ActiveForm;
         <?php foreach (AuthItem::getRoles() as $item_name): ?>
             <?php $roles[$item_name->name] = $item_name->name ?>
         <?php endforeach ?>
-        <?= $form->field($role, 'item_name')->dropDownList($roles) ?>
+        <?= $form->field($user, 'item_name')->dropDownList($roles) ?>
 
     </div>
     </div>

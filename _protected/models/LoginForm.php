@@ -47,17 +47,17 @@ class LoginForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
-        if (!$this->hasErrors()) 
-        {
-            $user = $this->getUser();
+        if ($this->hasErrors()) {
+            return false;
+        }
 
-            if (!$user || !$user->validatePassword($this->password)) 
-            {
-                // if scenario is 'lwe' we use email, otherwise we use username
-                $field = ($this->scenario === 'lwe') ? 'email' : 'username' ;
+        $user = $this->getUser();
 
-                $this->addError($attribute, 'Incorrect '.$field.' or password.');
-            }
+        if (!$user || !$user->validatePassword($this->password)) {
+            // if scenario is 'lwe' we use email, otherwise we use username
+            $field = ($this->scenario === 'lwe') ? 'email' : 'username' ;
+
+            $this->addError($attribute, 'Incorrect '.$field.' or password.');
         }
     }
 
@@ -83,45 +83,49 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate())
-        {
-            // get user status if user exists, otherwise assign not active as default
-            $this->status = ($user = $this->getUser()) ? $user->status : User::STATUS_NOT_ACTIVE;
-
-            // if we have active and valid user log him in
-            if ($this->status === User::STATUS_ACTIVE) 
-            {
-                return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
-            } 
-            else 
-            {
-                return false; // user is not active
-            }
-        } 
-        else 
-        {
+        if (!$this->validate()) {
             return false;
         }
+
+        $user = $this->getUser();
+
+        if (!$user) {
+            return false;
+        }
+
+        // if there is user but his status is inactive, write that in status property so we know for later
+        if ($user->status == User::STATUS_INACTIVE) {
+            $this->status = $user->status;
+            return false;
+        }
+ 
+        return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
     }
 
     /**
-     * Finds user by username or email in 'lwe' scenario.
+     * Helper method responsible for finding user based on the model scenario.
+     * In Login With Email 'lwe' scenario we find user by email, otherwise by username
+     * 
+     * @return object The found User object.
+     */
+    private function findUser()
+    {
+        if (!($this->scenario === 'lwe')) {
+            return User::findByUsername($this->username);
+        }
+
+        return $this->_user = User::findByEmail($this->email);   
+    }
+
+    /**
+     * Method that is returning User object.
      *
-     * @return User|null|static
+     * @return User|null
      */
     public function getUser()
     {
-        if ($this->_user === false) 
-        {
-            // in 'lwe' scenario we find user by email, otherwise by username
-            if ($this->scenario === 'lwe')
-            {
-                $this->_user = User::findByEmail($this->email);
-            } 
-            else 
-            {
-                $this->_user = User::findByUsername($this->username);
-            } 
+        if ($this->_user === false) {
+            $this->_user = $this->findUser();
         }
 
         return $this->_user;

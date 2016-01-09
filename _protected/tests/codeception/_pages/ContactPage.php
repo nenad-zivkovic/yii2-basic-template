@@ -4,7 +4,8 @@ namespace tests\codeception\_pages;
 use yii\codeception\BasePage;
 
 /**
- * Represents Contact Page
+ * Represents contact page
+ * @property \AcceptanceTester|\FunctionalTester $actor
  */
 class ContactPage extends BasePage
 {
@@ -17,10 +18,8 @@ class ContactPage extends BasePage
      */
     public function submit(array $contactData)
     {
-        foreach ($contactData as $field => $value) 
-        {
+        foreach ($contactData as $field => $value) {
             $inputType = $field === 'body' ? 'textarea' : 'input';
-
             $this->actor->fillField($inputType . '[name="ContactForm[' . $field . ']"]', $value);
         }
         

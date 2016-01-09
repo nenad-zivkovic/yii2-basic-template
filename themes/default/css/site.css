@@ -133,23 +133,19 @@ div.required label:after {
     color: #c4a500;
 }
 
-.role-editor {
+.role-employee {
     font-weight: bold;
-    color: #800080;
-}
-
-.role-support {
-    font-weight: bold;
-    color: #009d00;
+    color: #800080;    
 }
 
 .role-premium {
     font-weight: bold;
-    color: #4c4cff;
+    color: #009d00;
 }
 
 .role-member {
-    font-weight: bold;
+    font-weight: bold;  
+    color: #4c4cff;      
 }
 
 /*-- Colors used for various data presentation purposes --*/

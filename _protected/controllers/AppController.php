@@ -8,8 +8,7 @@ use Yii;
 
 /**
  * AppController extends Controller and implements the behaviors() method
- * where you can specify the access control ( AC filter + RBAC) for
- * your controllers and their actions.
+ * where you can specify the access control ( AC filter + RBAC ) for your controllers and their actions.
  */
 class AppController extends Controller
 {
@@ -26,21 +25,10 @@ class AppController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'controllers' => ['user', 'article'],
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'admin'],
+                        'controllers' => ['user'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['admin'],
-                    ],
-                    [
-                        'controllers' => ['article'],
-                        'actions' => ['create', 'update', 'admin'],
-                        'allow' => true,
-                        'roles' => ['editor'],
-                    ],
-                    [
-                        'controllers' => ['article'],
-                        'actions' => ['index', 'view'],
-                        'allow' => true
                     ],
                     [
                         // other rules

@@ -7,7 +7,7 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Model representing  Signup Form.
+ * Model representing Signup Form.
  */
 class SignupForm extends Model
 {
@@ -27,8 +27,12 @@ class SignupForm extends Model
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'match',  'not' => true,
+                // we do not want to allow users to pick one of spam/bad usernames 
+                'pattern' => '/\b('.Yii::$app->params['user.spamNames'].')\b/i',
+                'message' => Yii::t('app', 'It\'s impossible to have that username.')],            
             ['username', 'unique', 'targetClass' => '\app\models\User', 
-                'message' => 'This username has already been taken.'],
+                'message' => Yii::t('app', 'This username has already been taken.')],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -44,14 +48,14 @@ class SignupForm extends Model
             // on default scenario, user status is set to active
             ['status', 'default', 'value' => User::STATUS_ACTIVE, 'on' => 'default'],
             // status is set to not active on rna (registration needs activation) scenario
-            ['status', 'default', 'value' => User::STATUS_NOT_ACTIVE, 'on' => 'rna'],
+            ['status', 'default', 'value' => User::STATUS_INACTIVE, 'on' => 'rna'],
             // status has to be integer value in the given range. Check User model.
-            ['status', 'in', 'range' => [User::STATUS_NOT_ACTIVE, User::STATUS_ACTIVE]]
+            ['status', 'in', 'range' => [User::STATUS_INACTIVE, User::STATUS_ACTIVE]]
         ];
     }
 
     /**
-     * Set password rule based on our setting value (Force Strong Password).
+     * Set password rule based on our setting value ( Force Strong Password ).
      *
      * @return array Password strength rule
      */
@@ -102,9 +106,8 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->status = $this->status;
 
-        // if scenario is "rna" we will generate account activation token
-        if ($this->scenario === 'rna')
-        {
+        // if scenario is "rna" ( Registration Needs Activation ) we will generate account activation token
+        if ($this->scenario === 'rna') {
             $user->generateAccountActivationToken();
         }
 
@@ -121,9 +124,9 @@ class SignupForm extends Model
     public function sendAccountActivationEmail($user)
     {
         return Yii::$app->mailer->compose('accountActivationToken', ['user' => $user])
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($this->email)
-            ->setSubject('Account activation for ' . Yii::$app->name)
-            ->send();
+                                ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+                                ->setTo($this->email)
+                                ->setSubject('Account activation for ' . Yii::$app->name)
+                                ->send();
     }
 }

@@ -1,8 +1,6 @@
 <?php
 namespace tests\codeception\functional;
 
-use app\models\User;
-use app\rbac\models\Role;
 use tests\codeception\_pages\SignupPage;
 
 class SignupCest
@@ -14,14 +12,6 @@ class SignupCest
      */
     public function _before($event)
     {
-        // delete this signed up user
-        User::deleteAll([
-            'email' => 'demo@example.com',
-            'username' => 'demo',
-        ]);
-        
-        // delete roles
-        Role::deleteAll();   
     }
 
     /**
@@ -75,9 +65,9 @@ class SignupCest
         $signupPage->submit([]);
 
         $I->expectTo('see validation errors');
-        $I->see('Username cannot be blank.', '.help-block');
-        $I->see('Email cannot be blank.', '.help-block');
-        $I->see('Password cannot be blank.', '.help-block');
+        $I->see('Username cannot be blank.');
+        $I->see('Email cannot be blank.');
+        $I->see('Password cannot be blank.');
 
         //-- submit signup form with not correct email --//
         $I->amGoingTo('submit signup form with not correct email');
@@ -88,9 +78,9 @@ class SignupCest
         ]);
 
         $I->expectTo('see that email address is wrong');
-        $I->dontSee('Username cannot be blank.', '.help-block');
-        $I->dontSee('Password cannot be blank.', '.help-block');
-        $I->see('Email is not a valid email address.', '.help-block');
+        $I->dontSee('Username cannot be blank.');
+        $I->dontSee('Password cannot be blank.');
+        $I->see('Email is not a valid email address.');
 
         //-- submit signup form with correct email --//
         $I->amGoingTo('submit signup form with correct email');

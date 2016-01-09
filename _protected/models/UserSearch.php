@@ -35,27 +35,25 @@ class UserSearch extends User
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applied.
      *
-     * @param  array $params
+     * @param  array   $params
+     * @param  integer $pageSize How many users to display per page.
      * @return ActiveDataProvider
      */
-    public function search($params, $pageSize = 10, $theCreator = false)
+    public function search($params, $pageSize = 10)
     {
         $query = User::find()->joinWith('role');
 
-        // we make sure that admin- roles can not see users with theCreator role
-        if ($theCreator === false) 
-        {
+        // if user is not 'theCreator' ( You ), do not show him users with this role
+        if (!Yii::$app->user->can('theCreator')) {
             $query->where(['!=', 'item_name', 'theCreator']);
         }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> ['defaultOrder' => ['id'=>SORT_ASC]],
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ]
+            'pagination' => ['pageSize' => $pageSize]
         ]);
 
         // make item_name (Role) sortable
@@ -64,8 +62,7 @@ class UserSearch extends User
             'desc' => ['item_name' => SORT_DESC],
         ];
 
-        if (!($this->load($params) && $this->validate())) 
-        {
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
@@ -93,8 +90,7 @@ class UserSearch extends User
     {
         $roles = [];
 
-        foreach (AuthItem::getRoles() as $item_name) 
-        {
+        foreach (AuthItem::getRoles() as $item_name) {
             $roles[$item_name->name] = $item_name->name;
         }
 

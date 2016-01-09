@@ -15,10 +15,25 @@ use Yii;
  */
 class User extends UserIdentity
 {
-    const STATUS_DELETED = 0;
-    const STATUS_NOT_ACTIVE = 1;
-    const STATUS_ACTIVE = 10;
+    // the list of status values that can be stored in user table
+    const STATUS_ACTIVE   = 10;
+    const STATUS_INACTIVE = 1;
+    const STATUS_DELETED  = 0;   
 
+    /**
+     * List of names for each status.
+     * @var array
+     */
+    public $statusList = [
+        self::STATUS_ACTIVE   => 'Active',
+        self::STATUS_INACTIVE => 'Inactive',
+        self::STATUS_DELETED  => 'Deleted'
+    ];
+
+    /**
+     * We made this property so we do not pull hashed password from db when updating
+     * @var string
+     */
     public $password;
 
     /**
@@ -34,18 +49,30 @@ class User extends UserIdentity
     public function rules()
     {
         return [
-            [['username', 'email'], 'filter', 'filter' => 'trim'],
-            [['username', 'email', 'status'], 'required'],
-            ['email', 'email'],
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'match',  'not' => true,
+                // we do not want to allow users to pick one of spam/bad usernames 
+                'pattern' => '/\b('.Yii::$app->params['user.spamNames'].')\b/i',
+                'message' => Yii::t('app', 'It\'s impossible to have that username.')],          
+            ['username', 'unique', 
+                'message' => Yii::t('app', 'This username has already been taken.')],
+
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 
+                'message' => Yii::t('app', 'This email address has already been taken.')],
 
             // password field is required on 'create' scenario
             ['password', 'required', 'on' => 'create'],
             // use passwordStrengthRule() method to determine password strength
             $this->passwordStrengthRule(),
-                      
-            ['username', 'unique', 'message' => 'This username has already been taken.'],
-            ['email', 'unique', 'message' => 'This email address has already been taken.'],
+
+            ['status', 'required'],
+            ['item_name', 'string', 'min' => 3, 'max' => 64]
         ];
     }
 
@@ -110,16 +137,6 @@ class User extends UserIdentity
     {
         // User has_one Role via Role.user_id -> id
         return $this->hasOne(Role::className(), ['user_id' => 'id']);
-    }  
-
-    /**
-     * Relation with Article model.
-     * 
-     * @return \yii\db\ActiveQuery
-     */
-    public function getArticles()
-    {
-        return $this->hasMany(Article::className(), ['user_id' => 'id']);
     }
 
 //------------------------------------------------------------------------------------------------//
@@ -156,8 +173,7 @@ class User extends UserIdentity
      */
     public static function findByPasswordResetToken($token)
     {
-        if (!static::isPasswordResetTokenValid($token)) 
-        {
+        if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
 
@@ -177,7 +193,7 @@ class User extends UserIdentity
     {
         return static::findOne([
             'account_activation_token' => $token,
-            'status' => User::STATUS_NOT_ACTIVE,
+            'status' => User::STATUS_INACTIVE,
         ]);
     }
   
@@ -188,51 +204,30 @@ class User extends UserIdentity
     /**
      * Returns the user status in nice format.
      *
-     * @param  null|integer $status Status integer value if sent to method.
-     * @return string               Nicely formatted status.
+     * @param  integer $status Status integer value.
+     * @return string          Nicely formatted status.
      */
-    public function getStatusName($status = null)
+    public function getStatusName($status)
     {
-        $status = (empty($status)) ? $this->status : $status ;
-
-        if ($status === self::STATUS_DELETED)
-        {
-            return "Deleted";
-        }
-        elseif ($status === self::STATUS_NOT_ACTIVE)
-        {
-            return "Inactive";
-        }
-        else
-        {
-            return "Active";
-        }
+        return $this->statusList[$status];
     }
 
     /**
-     * Returns the array of possible user status values.
-     *
-     * @return array
-     */
-    public function getStatusList()
-    {
-        $statusArray = [
-            self::STATUS_ACTIVE     => 'Active',
-            self::STATUS_NOT_ACTIVE => 'Inactive',
-            self::STATUS_DELETED    => 'Deleted'
-        ];
-
-        return $statusArray;
-    }
-
-    /**
-     * Returns the role name ( item_name )
+     * Returns the role name.
+     * If user has any custom role associated with him we will return it's name, 
+     * else we return 'member' to indicate that user is just a member of the site with no special roles.
      *
      * @return string
      */
     public function getRoleName()
     {
-        return $this->role->item_name;
+        // if user has some role assigned, return it's name
+        if ($this->role) {
+            return $this->role->item_name;
+        }
+        
+        // user does not have role assigned, but if he is authenticated '@', it is same as if he has member role
+        return 'member';
     }
 
     /**
@@ -259,8 +254,7 @@ class User extends UserIdentity
      */
     public static function isPasswordResetTokenValid($token)
     {
-        if (empty($token)) 
-        {
+        if (empty($token)) {
             return false;
         }
 

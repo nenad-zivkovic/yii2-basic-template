@@ -1,26 +1,23 @@
 <?php
-Yii::setAlias('appRoot', '/'.basename(dirname(dirname(__DIR__))));
 
 $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
     'name' => 'My Company',
-    //'language' => 'sr',
+    'language' => 'en',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'app\components\Aliases'],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) 
-            // - this is required by cookie validation
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
-        // you can set your theme here 
-        // - template comes with: 'default', 'slate', 'spacelab' and 'cerulean'
+        // you can set your theme here - template comes with: 'default' and 'creative'
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/slate/views'],
-                'baseUrl' => '@web/themes/slate',
+                'pathMap' => ['@app/views' => '@webroot/themes/default/views'],
+                'baseUrl' => '@web/themes/default',
             ],
         ],
         'assetManager' => [
@@ -51,10 +48,13 @@ $config = [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => [
+                '<alias:\w+>' => 'site/<alias>',
+            ],
         ],
         'user' => [
             'identityClass' => 'app\models\UserIdentity',
-            'enableAutoLogin' => false,
+            'enableAutoLogin' => true,
         ],
         'session' => [
             'class' => 'yii\web\Session',
@@ -62,15 +62,15 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'cache' => 'cache',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+            // send all mails to a file by default. 
+            // You have to set 'useFileTransport' to false and configure a transport for the mailer to send real emails.
             'useFileTransport' => true,
         ],
         'log' => [
@@ -99,21 +99,15 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
-
-    // set allias for our uploads folder 
-    // @appRoot alias is definded in config/bootstrap.php file
-    'aliases' => [
-        '@uploads' => '@appRoot/uploads'
-    ],
 ];
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = 'yii\debug\Module';
+    $config['modules']['debug'] = ['class' => 'yii\debug\Module'];
 
     $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = 'yii\gii\Module';
+    $config['modules']['gii'] = ['class' => 'yii\gii\Module'];
 }
 
 return $config;

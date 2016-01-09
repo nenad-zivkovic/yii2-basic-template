@@ -1,8 +1,6 @@
 <?php
 namespace tests\codeception\acceptance;
 
-use app\models\User;
-use app\rbac\models\Role;
 use tests\codeception\_pages\SignupPage;
 
 class SignupCest
@@ -13,15 +11,7 @@ class SignupCest
      * @param \Codeception\Event\TestEvent $event
      */
     public function _before($event)
-    {
-        // delete demo user
-        User::deleteAll([
-            'email' => 'demo@example.com',
-            'username' => 'demo',
-        ]);
-        
-        // delete roles
-        Role::deleteAll();   
+    { 
     }
 
     /**

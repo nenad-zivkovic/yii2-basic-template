@@ -36,40 +36,30 @@ AppAsset::register($this);
             // everyone can see Home page
             $menuItems[] = ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']];
 
-            // we do not need to display Article/index, About and Contact pages to editor+ roles
-            if (!Yii::$app->user->can('editor')) 
-            {
-                $menuItems[] = ['label' => Yii::t('app', 'Articles'), 'url' => ['/article/index']];
+            // we do not need to display About and Contact pages to employee+ roles
+            if (!Yii::$app->user->can('employee')) {
                 $menuItems[] = ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']];
                 $menuItems[] = ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']];
             }
 
-            // display Article admin page to editor+ roles
-            if (Yii::$app->user->can('editor'))
-            {
-                $menuItems[] = ['label' => Yii::t('app', 'Articles'), 'url' => ['/article/admin']];
-            }            
-
             // display Users to admin+ roles
-            if (Yii::$app->user->can('admin'))
-            {
+            if (Yii::$app->user->can('admin')){
                 $menuItems[] = ['label' => Yii::t('app', 'Users'), 'url' => ['/user/index']];
             }
             
-            // display Signup and Login pages to guests of the site
-            if (Yii::$app->user->isGuest) 
-            {
-                $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
-            }
-            // display Logout to all logged in users
-            else 
-            {
+            // display Logout to logged in users
+            if (!Yii::$app->user->isGuest) {
                 $menuItems[] = [
                     'label' => Yii::t('app', 'Logout'). ' (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
+            }
+
+            // display Signup and Login pages to guests of the site
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
+                $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
             }
 
             echo Nav::widget([

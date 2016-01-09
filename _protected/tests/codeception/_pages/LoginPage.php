@@ -4,7 +4,8 @@ namespace tests\codeception\_pages;
 use yii\codeception\BasePage;
 
 /**
- * Represents Login Page
+ * Represents login page
+ * @property \AcceptanceTester|\FunctionalTester $actor
  */
 class LoginPage extends BasePage
 {
@@ -13,15 +14,15 @@ class LoginPage extends BasePage
     /**
      * Method representing user submitting login form.
      *
-     * @param $user
-     * @param $password
+     * @param string $name     username|email
+     * @param string $password
      */
-    public function login($user, $password)
+    public function login($name, $password)
     {
         // if 'Login With Email' is true use email field, otherwise use username
         $field = (\Yii::$app->params['lwe']) ? 'email' : 'username' ;
 
-        $this->actor->fillField('input[name="LoginForm['.$field.']"]', $user);
+        $this->actor->fillField('input[name="LoginForm['.$field.']"]', $name);
         $this->actor->fillField('input[name="LoginForm[password]"]', $password);
         $this->actor->click('login-button');
     }

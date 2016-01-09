@@ -47,8 +47,7 @@ class LoginFormTest extends DbTestCase
             'password' => 'member123',
         ]);
 
-        $this->specify('user should not be able to login, when username is wrong', 
-            function () use ($model) {
+        $this->specify('user should not be able to login, when username is wrong', function () use ($model) {
             expect('model should not login user', $model->login())->false();
             expect('user should not be logged in', Yii::$app->user->isGuest)->true();
         });
@@ -63,8 +62,7 @@ class LoginFormTest extends DbTestCase
         $model->email = 'member@wrong.com';
         $model->password = 'member123';
 
-        $this->specify('user should not be able to login, when email is wrong', 
-            function () use ($model) {
+        $this->specify('user should not be able to login, when email is wrong', function () use ($model) {
             expect('model should not login user', $model->login())->false();
             expect('user should not be logged in', Yii::$app->user->isGuest)->true();
         }); 
@@ -79,8 +77,7 @@ class LoginFormTest extends DbTestCase
         $model->email = 'member@example.com';
         $model->password = 'password';
         
-        $this->specify('user should not be able to login with wrong password', 
-            function () use ($model) {
+        $this->specify('user should not be able to login with wrong password', function () use ($model) {
             expect('model should not login user', $model->login())->false();
             expect('error message should be set', $model->errors)->hasKey('password');
             expect('user should not be logged in', Yii::$app->user->isGuest)->true();
@@ -111,8 +108,7 @@ class LoginFormTest extends DbTestCase
         $model->email = 'member@example.com';
         $model->password = 'member123';
         
-        $this->specify('user should be able to login with correct credentials', 
-            function () use ($model) {
+        $this->specify('user should be able to login with correct credentials', function () use ($model) {
             expect('model should login user', $model->login())->true();
             expect('error message should not be set', $model->errors)->hasntKey('password');
             expect('user should be logged in', Yii::$app->user->isGuest)->false();
