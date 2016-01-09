@@ -28,15 +28,13 @@ class ResetPasswordForm extends Model
      */
     public function __construct($token, $config = [])
     {
-        if (empty($token) || !is_string($token)) 
-        {
+        if (empty($token) || !is_string($token)) {
             throw new InvalidParamException(Yii::t('app', 'Password reset token cannot be blank.'));
         }
 
         $this->_user = User::findByPasswordResetToken($token);
 
-        if (!$this->_user) 
-        {
+        if (!$this->_user) {
             throw new InvalidParamException(Yii::t('app', 'Wrong password reset token.'));
         }
 
@@ -70,8 +68,7 @@ class ResetPasswordForm extends Model
         // password strength rule is determined by StrengthValidator 
         // presets are located in: vendor/nenad/yii2-password-strength/presets.php
         // NOTE: you should use RESET rule because it doesn't require username and email validation
-        $strong = [['password'], StrengthValidator::className(), 
-                    'preset'=>'reset', 'userAttribute'=>'password'];
+        $strong = [['password'], StrengthValidator::className(), 'preset'=>'reset', 'userAttribute'=>'password'];
 
         // use normal yii rule
         $normal = ['password', 'string', 'min' => 6];

@@ -11,7 +11,7 @@ return [
      *
      * If set to true, upon registration, users will have to activate their accounts using email account activation.
      */
-    'rna' => true,
+    'rna' => false,
 
     /**
      * Login With Email.
