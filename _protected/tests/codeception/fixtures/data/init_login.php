@@ -22,7 +22,7 @@ return [
         // password is : admin123
         'password_hash' => '$2y$13$p42pDgFC67pKhLuP0HVFR.jZdBF1BwiQP0MLDf3GO8jfjo0MjoQyi',
         'password_reset_token' => 'geGUnapFHpJWdztNKS4nj4Eb404Q1il1_1412606184',
-        'account_activation_token' => '',
+        'account_activation_token' => 'ttVzjequF5PNR8jsLDUczmJkxPuQMStl_' . time(),
         'status' => 10,
         'created_at' => '1413919102',
         'updated_at' => '1413919102',  
@@ -35,7 +35,7 @@ return [
         // password is : member123
         'password_hash' => '$2y$13$4UkVY65btY8.uFsylJjq8O./fkoDJGQPASKOSW4.3D7RcbT8pvksm',
         'password_reset_token' => 'geGUnapFHpJWdztNKS4nj4Eb404Q1il1_1412606182',
-        'account_activation_token' => '',
+        'account_activation_token' => 'afVzjequF5PNR8jsLDUczmJkxPuQMStl_' . time(),
         'status' => 10,
         'created_at' => '1413919102',
         'updated_at' => '1413919102',

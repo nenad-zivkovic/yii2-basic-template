@@ -87,7 +87,7 @@ class LoginFormTest extends DbTestCase
     /**
      * If user has not activated his account he should not be able to log in.
      */
-    public function testLoginNotActivatedUser()
+    public function testLoginInactiveUser()
     {
         $model = new LoginForm(['scenario' => 'lwe']);
         $model->email = 'tester@example.com';
@@ -102,7 +102,7 @@ class LoginFormTest extends DbTestCase
     /**
      * Active user should be able to log in if he enter correct credentials.
      */
-    public function testLoginActivatedUser()
+    public function testLoginActiveUser()
     {
         $model = new LoginForm(['scenario' => 'lwe']);
         $model->email = 'member@example.com';

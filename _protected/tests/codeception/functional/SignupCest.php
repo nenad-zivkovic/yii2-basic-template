@@ -65,9 +65,9 @@ class SignupCest
         $signupPage->submit([]);
 
         $I->expectTo('see validation errors');
-        $I->see('Username cannot be blank.');
-        $I->see('Email cannot be blank.');
-        $I->see('Password cannot be blank.');
+        $I->see('Username cannot be blank.', '.help-block');
+        $I->see('Email cannot be blank.', '.help-block');
+        $I->see('Password cannot be blank.', '.help-block');
 
         //-- submit signup form with not correct email --//
         $I->amGoingTo('submit signup form with not correct email');
@@ -78,9 +78,9 @@ class SignupCest
         ]);
 
         $I->expectTo('see that email address is wrong');
-        $I->dontSee('Username cannot be blank.');
-        $I->dontSee('Password cannot be blank.');
-        $I->see('Email is not a valid email address.');
+        $I->dontSee('Username cannot be blank.', '.help-block');
+        $I->dontSee('Password cannot be blank.', '.help-block');
+        $I->see('Email is not a valid email address.', '.help-block');
 
         //-- submit signup form with correct email --//
         $I->amGoingTo('submit signup form with correct email');

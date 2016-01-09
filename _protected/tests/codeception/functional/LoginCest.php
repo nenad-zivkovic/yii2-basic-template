@@ -115,7 +115,7 @@ class LoginCest
      * @param \Codeception\FunctionalTester $I
      * @param \Codeception\Scenario         $scenario
      */
-    public function testLoginNotActiveUser($I, $scenario)
+    public function testLoginInactiveUser($I, $scenario)
     {
         // get setting value for 'Login With Email'
         $lwe = \Yii::$app->params['lwe'];
