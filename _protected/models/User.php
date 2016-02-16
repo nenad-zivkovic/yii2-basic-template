@@ -226,8 +226,8 @@ class User extends UserIdentity
             return $this->role->item_name;
         }
         
-        // user does not have role assigned, but if he is authenticated '@', it is same as if he has member role
-        return 'member';
+        // user does not have role assigned, but if he is authenticated '@'
+        return '@uthenticated';
     }
 
     /**
