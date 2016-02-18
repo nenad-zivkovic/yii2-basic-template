@@ -13,11 +13,19 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
-        // you can set your theme here - template comes with: 'default' and 'creative'
+        // you can set your theme here - template comes with: 'readable' and 'slate'
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/default/views'],
-                'baseUrl' => '@web/themes/default',
+                'pathMap' => ['@app/views' => '@webroot/themes/readable/views'],
+                'baseUrl' => '@web/themes/readable',
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                // we will use bootstrap css from our theme
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [], // do not use yii default one
+                ],
             ],
         ],
         'cache' => [

@@ -16,10 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::encode($this->title) ?>
         <div class="pull-right">
             <?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'btn btn-warning']) ?>
-            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], [
-                'class' => 'btn btn-primary']) ?>
-            <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
+            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], ['class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this user?'),
                     'method' => 'post',

@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@themes';
 
     public $css = [
+        'css/bootstrap.min.css',
         'css/site.css',
     ];
 
