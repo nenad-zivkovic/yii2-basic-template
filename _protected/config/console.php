@@ -35,11 +35,10 @@ $config = [
 ];
 
 // configuration adjustments for 'dev' environment
-if (YII_ENV_DEV) 
-{
+if (YII_ENV_DEV) {
     // boostrap gii module
     $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = 'yii\gii\Module';
+    $config['modules']['gii'] = ['class' => 'yii\gii\Module'];
 }
 
 return $config;

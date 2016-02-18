@@ -146,6 +146,7 @@ class SiteController extends Controller
         // if 'lwe' value is 'true' we instantiate LoginForm in 'lwe' scenario
         $model = $lwe ? new LoginForm(['scenario' => 'lwe']) : new LoginForm();
 
+        // monitor login status
         $successfulLogin = true;
 
         // posting data or login has failed
@@ -260,7 +261,7 @@ class SiteController extends Controller
             return $this->render('signup', ['model' => $model]);  
         }
 
-        // try to save user data in database, it successful, the user object will be returned
+        // try to save user data in database, if successful, the user object will be returned
         $user = $model->signup();
 
         if (!$user) {

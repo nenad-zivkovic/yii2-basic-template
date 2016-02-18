@@ -165,7 +165,7 @@ class UserController extends AppController
         }
 
         $auth = Yii::$app->authManager;
-        $info = true;
+        $info = true; // monitor info status
 
         // get user role if he has one  
         if ($roles = $auth->getRolesByUser($id)) {
