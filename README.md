@@ -1,7 +1,7 @@
 yii2-basic-template
 ===================
 
-Yii2-basic-template is based on yii2-app-basic created by yii2 core developers.
+Yii2-basic-template is based on yii2-app-basic created by yii2 core developers, but it also uses some of the features presented in their advanced template too.
 There are several upgrades made to this template.
 
 1. This template comes with almost all features that default yii2-app-advanced has.
@@ -16,27 +16,24 @@ Features
 - Login using email/password or username/password combo.
     - You can chose how users will login into system. They can log in either by using their username|password combo or email|password.
 - Rbac tables are installed with other migrations when you run ```yii migrate``` command.
-    - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
+    - RbacController's init() action will insert 5 roles and 7 permissions in our rbac tables created by migration.
     - Roles can be easily assigned to users by administrators of the site.
-    - Nice example of how to use rbac in your code is given in this application. See: AppController.
-- Users with editor+ roles can create articles.
-- Session data is stored in _protected/session folder ( changes from v2 ).
-- System setting are stored in config/params.php file ( changes from v2 ).
+- Session data is stored in _protected/session folder.
+- System setting are stored in config/params.php file.
 - Theming is supported out of the box.
 - Translation is supported out of the box.
-- Administrators and The Creator can manage users ( changes from v2 ).
-- Password strength validation and strength meter.
+- Administrator+ roles can manage users.
+- Password strength validation and strength meter are included out of the box.
+- Simple role management is included out of the box.
 - Code is heavily commented out.
 
 Installation
 -------------------
 >I am assuming that you know how to: install and use Composer, and install additional packages/drivers that may be needed for you to run everything on your system. In case you are new to all of this, you can check my guides for installing default yii2 application templates, provided by yii2 developers, on Windows 8 and Ubuntu based Linux operating systems, posted on www.freetuts.org.
 
-1. Create database that you are going to use for your application (you can use phpMyAdmin or any
-other tool you like).
+1. Create database that you are going to use for your application (you can use phpMyAdmin or any other tool that you like).
 
-2. Now open up your console and ```cd``` to your web root directory, 
-for example: ``` cd /var/www/sites/ ```
+2. Now open up your console and ```cd``` to your web root directory, for example: ``` cd /var/www/html/ ```
 
 3. Run the Composer ```create-project``` command:
 
@@ -59,7 +56,7 @@ permissions:
 
 You are done, you can start your application in your browser.
 
-> Note: First user that signs up will get 'theCreator' (super admin) role. This is supposed to be you. This role have all possible super powers :-) . Every other user that signs up after the first one will get 'member' role. Member is just normal authenticated user. 
+> Note: First user that signs up will get 'theCreator' (super admin) role. This is supposed to be you. This role have all possible super powers :-) . Every other user that signs up after the first one will NOT get any role by default. This is because authenticated user (@ by default) is same like our member role. 
 
 Testing
 -------------------
@@ -98,6 +95,7 @@ Directory structure
 ```
 _protected
     assets/              contains assets definition
+    components/           contains custom made application components
     config/              contains application configurations
     console              contains console commands (controllers and migrations)
     controllers/         contains Web controller classes
@@ -114,32 +112,13 @@ assets                   contains application assets generated during runtime
 themes                   contains your themes
 uploads                  contains various files that can be uploaded by application users
 ```
-Version 2.2.0 changes
+Version 2.3.0 changes
 -------------------
-1) Adds `uploads` folder to the application root.  
-2) Adds, `@uploads` alias has been added, so you can use it in your code ( will target your_app_name/uploads folder )  
-3) Additional translations are included. Thanks to MeFuMo and hior   
-4) Minor fixes  
-
-Version 2.1.0 changes
--------------------
-1) option to CRUD articles ( posts ) has been added  
-2) translation support has been included and Serbian translation has been added  
-3) themes has been improved  
-4) new roles, permissions and rules are added  
-5) other code refactoring has been done  
-
-Version 2.0 changes
--------------------
-
-1) settings are stored in config/params.php configuration file to reduce database load  
-2) session is stored in files located in runtime/session folder  
-3) account update is merged with user management and user management is more powerful now   
-4) User model has been separated on UserIdentity and User (for easier understanding and use)  
-5) 4 beautiful bootstrap responsive themes are included out of the box  
-6) comment style is changed according to yii2 official style  
-7) tests has been rewritten according to the changes that has been made  
-8) a lot of other polishing has been done  
+1) Adds `components` folder to the _protected folder, and `Aliases` class in it.  
+2) Articles have been removed from the template.  
+3) Themes have been changed.
+4) A lot of code improvements have been done. 
+5) More translation messages have been added.
 
 Password strength guide
 -----------------------
@@ -149,10 +128,8 @@ Since 1.1.1 version has been released, password strength extension has been incl
 In our signup, user create/update and password reset forms password strength meter is always displayed when users are entering their password. This will give them visual representation of their password strength.  
 But this is not all. As The Creator you have option in your settings "Force Strong Password" that you can use. If you turn it on, users will be forced to use strong passwords according to preset you chose. For example if you use normal preset, users will be forced to use at least 8 characters long password, with at least one upper-case and one lower-case letter, plus at least one digit.  
 
-> Since version 2 settings are stored in config/params.php file!  
-
 Choosing presets:
 
-By default normal preset is used for signup and user create/update forms. For password reset we are using 'reset' preset if you want to customize which presets is used, see SignupForm model, User model and ResetPasswordForm model. You will see rules declared for using strong passwords. Presets are located in ```vendor/nenad/yii2-password-strength/presets.php```. You can chose some other preset declared in presets.php, or create new ones.
+By default normal preset is used for signup and user create/update forms. For password reset we are using 'simple' preset. If you want to customize which presets is used, see SignupForm model, User model and ResetPasswordForm model. You will see rules declared for using strong passwords. Presets are located in ```vendor/kartik-v/yii2-password/presets.php```. You can chose some other preset declared in presets.php, or create new ones.
 
 [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/)
