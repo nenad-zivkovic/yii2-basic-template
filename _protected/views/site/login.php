@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
 
             <?= $form->field($model, 'username')->textInput(
-                ['placeholder' => Yii::t('app', 'Enter your username'), 'autofocus' => true])  ?>
+                ['placeholder' => Yii::t('app', 'Enter your username'), 'autofocus' => true]) ?>
 
         <?php endif ?>
 

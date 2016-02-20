@@ -1,8 +1,8 @@
 <?php
 namespace app\models;
 
-use nenad\passwordStrength\StrengthValidator;
 use app\rbac\helpers\RbacHelper;
+use kartik\password\StrengthValidator;
 use yii\base\Model;
 use Yii;
 
@@ -65,7 +65,7 @@ class SignupForm extends Model
         $fsp = Yii::$app->params['fsp'];
 
         // password strength rule is determined by StrengthValidator 
-        // presets are located in: vendor/nenad/yii2-password-strength/presets.php
+        // presets are located in: vendor/kartik-v/yii2-password/presets.php
         $strong = [['password'], StrengthValidator::className(), 'preset'=>'normal'];
 
         // use normal yii rule

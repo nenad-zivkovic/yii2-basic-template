@@ -3,7 +3,7 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \app\models\SignupForm */
 
-use nenad\passwordStrength\PasswordInput;
+use kartik\password\PasswordInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 

@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-use nenad\passwordStrength\StrengthValidator;
+use kartik\password\StrengthValidator;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use Yii;
@@ -66,9 +66,9 @@ class ResetPasswordForm extends Model
         $fsp = Yii::$app->params['fsp'];
 
         // password strength rule is determined by StrengthValidator 
-        // presets are located in: vendor/nenad/yii2-password-strength/presets.php
-        // NOTE: you should use RESET rule because it doesn't require username and email validation
-        $strong = [['password'], StrengthValidator::className(), 'preset'=>'reset', 'userAttribute'=>'password'];
+        // presets are located in: vendor/kartik-v/yii2-password/presets.php
+        // NOTE: you should use SIMPLE rule because it doesn't require username and email validation
+        $strong = [['password'], StrengthValidator::className(), 'preset'=>'simple', 'userAttribute'=>'password'];
 
         // use normal yii rule
         $normal = ['password', 'string', 'min' => 6];

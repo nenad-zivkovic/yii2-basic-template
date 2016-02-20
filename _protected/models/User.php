@@ -2,7 +2,7 @@
 namespace app\models;
 
 use app\rbac\models\Role;
-use nenad\passwordStrength\StrengthValidator;
+use kartik\password\StrengthValidator;
 use yii\behaviors\TimestampBehavior;
 use Yii;
 
@@ -87,7 +87,7 @@ class User extends UserIdentity
         $fsp = Yii::$app->params['fsp'];
 
         // password strength rule is determined by StrengthValidator 
-        // presets are located in: vendor/nenad/yii2-password-strength/presets.php
+        // presets are located in: vendor/kartik-v/yii2-password/presets.php
         $strong = [['password'], StrengthValidator::className(), 'preset'=>'normal'];
 
         // normal yii rule
