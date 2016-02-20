@@ -14,13 +14,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="col-lg-5 well bs-component">
+    <div class="col-md-5 well bs-component">
 
         <p><?= Yii::t('app', 'Please choose your new password:') ?></p>
 
         <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-            <?= $form->field($model, 'password')->widget(PasswordInput::classname(), []) ?>
+            <?= $form->field($model, 'password')->widget(PasswordInput::classname(), 
+                ['options' => ['placeholder' => Yii::t('app', 'Enter new password'), 'autofocus' => true]]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-primary']) ?>
