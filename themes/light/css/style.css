@@ -147,7 +147,7 @@ div.required label:after {
 
 /*-- Password strength --*/
 
-/* hide strength meter so we can fade it in nicely with jQuery */
-.nz-meter-container {
-    display: none;
+/* Ajust the size so it fits nicely */
+.kv-meter-container {
+    width: 105px;
 }
