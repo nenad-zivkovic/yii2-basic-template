@@ -4,7 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'name' => 'My Company',
+    'name' => 'BASIC',
     'language' => 'en',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'app\components\Aliases'],
@@ -13,11 +13,11 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '',
         ],
-        // you can set your theme here - template comes with: 'readable' and 'slate'
+        // you can set your theme here - template comes with: 'light' and 'dark'
         'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@webroot/themes/readable/views'],
-                'baseUrl' => '@web/themes/readable',
+                'pathMap' => ['@app/views' => '@webroot/themes/light/views'],
+                'baseUrl' => '@web/themes/light',
             ],
         ],
         'assetManager' => [
