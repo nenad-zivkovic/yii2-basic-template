@@ -95,7 +95,7 @@ Directory structure
 ```
 _protected
     assets/              contains assets definition
-    components/           contains custom made application components
+    components/          contains custom made application components
     config/              contains application configurations
     console              contains console commands (controllers and migrations)
     controllers/         contains Web controller classes
@@ -116,9 +116,9 @@ Version 2.3.0 changes
 -------------------
 1) Adds `components` folder to the _protected folder, and `Aliases` class in it.  
 2) Articles have been removed from the template.  
-3) Themes have been changed.
-4) A lot of code improvements have been done. 
-5) More translation messages have been added.
+3) Themes have been changed.    
+4) A lot of code improvements have been done.    
+5) More translation messages have been added.    
 
 Password strength guide
 -----------------------
