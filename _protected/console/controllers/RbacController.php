@@ -17,19 +17,14 @@ use Yii;
  * - premium    : premium member of this site (authenticated users with extra powers)
  * - member     : authenticated user, this role is equal to default '@', and it does not have to be set upon sign up
  *
- * Creates 7 permissions:
+ * Creates 2 permissions:
  *
  * - usePremiumContent  : allows premium users to use premium content
- * - createArticle      : allows employee+ roles to create articles
- * - updateOwnArticle   : allows employee+ roles to update own articles
- * - updateArticle      : allows admin+ roles to update all articles
- * - deleteArticle      : allows admin+ roles to delete articles
- * - adminArticle       : allows admin+ roles to manage articles
  * - manageUsers        : allows admin+ roles to manage users (CRUD plus role assignment)
  *
  * Creates 1 rule:
  *
- * - AuthorRule : allows employee+ roles to update their own content
+ * - AuthorRule : allows employee+ roles to update their own content (not used by default)
  */
 class RbacController extends Controller
 {
@@ -42,7 +37,7 @@ class RbacController extends Controller
 
         //---------- RULES ----------//
 
-        // add the rule
+        // add the rule (not used by default)
         $rule = new AuthorRule;
         $auth->add($rule);
 
@@ -57,35 +52,6 @@ class RbacController extends Controller
         $manageUsers = $auth->createPermission('manageUsers');
         $manageUsers->description = 'Allows admin+ roles to manage users';
         $auth->add($manageUsers);
-
-        // add "createArticle" permission
-        $createArticle = $auth->createPermission('createArticle');
-        $createArticle->description = 'Allows employee+ roles to create articles';
-        $auth->add($createArticle);
-
-        // add "deleteArticle" permission
-        $deleteArticle = $auth->createPermission('deleteArticle');
-        $deleteArticle->description = 'Allows admin+ roles to delete articles';
-        $auth->add($deleteArticle);
-
-        // add "adminArticle" permission
-        $adminArticle = $auth->createPermission('adminArticle');
-        $adminArticle->description = 'Allows employee+ roles to manage articles';
-        $auth->add($adminArticle);  
-
-        // add "updateArticle" permission
-        $updateArticle = $auth->createPermission('updateArticle');
-        $updateArticle->description = 'Allows employee+ roles to update articles';
-        $auth->add($updateArticle);
-
-        // add the "updateOwnArticle" permission and associate the rule with it.
-        $updateOwnArticle = $auth->createPermission('updateOwnArticle');
-        $updateOwnArticle->description = 'Update own article';
-        $updateOwnArticle->ruleName = $rule->name;
-        $auth->add($updateOwnArticle);
-
-        // "updateOwnArticle" will be used from "updateArticle"
-        $auth->addChild($updateOwnArticle, $updateArticle);
 
         //---------- ROLES ----------//
 

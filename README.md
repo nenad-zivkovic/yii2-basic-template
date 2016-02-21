@@ -16,7 +16,7 @@ Features
 - Login using email/password or username/password combo.
     - You can chose how users will login into system. They can log in either by using their username|password combo or email|password.
 - Rbac tables are installed with other migrations when you run ```yii migrate``` command.
-    - RbacController's init() action will insert 5 roles and 7 permissions in our rbac tables created by migration.
+    - RbacController's init() action will insert 5 roles and 2 permissions in our rbac tables created by migration.
     - Roles can be easily assigned to users by administrators of the site.
 - Session data is stored in _protected/session folder.
 - System setting are stored in config/params.php file.
