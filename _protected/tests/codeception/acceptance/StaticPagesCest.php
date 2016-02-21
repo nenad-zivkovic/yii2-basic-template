@@ -44,7 +44,7 @@ class StaticPagesCest
     {
         $I->wantTo('ensure that home page works');
         $I->amOnPage(Yii::$app->homeUrl);
-        $I->see('My Company');
+        $I->see(Yii::$app->name);
         $I->seeLink('About');
         $I->click('About');
         $I->see('This is the About page.');
@@ -87,7 +87,7 @@ class StaticPagesCest
         $I->see('Email cannot be blank.');
         $I->see('Subject cannot be blank.');
         $I->see('Text cannot be blank.');
-        $I->see('The verification code is incorrect.');
+        $I->see('Verification Code cannot be blank.');
 
         //-- submit form with not correct email --//
         $I->amGoingTo('submit contact form with not correct email');
