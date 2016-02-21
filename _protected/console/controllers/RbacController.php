@@ -73,9 +73,6 @@ class RbacController extends Controller
         $employee->description = 'Employee of this site/company who has lower rights than admin';
         $auth->add($employee);
         $auth->addChild($employee, $premium);
-        $auth->addChild($employee, $createArticle);
-        $auth->addChild($employee, $updateOwnArticle);
-        $auth->addChild($employee, $adminArticle);
 
         // add "admin" role and give this role: 
         // manageUsers, updateArticle adn deleteArticle permissions, plus employee role.
@@ -84,8 +81,6 @@ class RbacController extends Controller
         $auth->add($admin);
         $auth->addChild($admin, $employee);
         $auth->addChild($admin, $manageUsers);
-        $auth->addChild($admin, $updateArticle);
-        $auth->addChild($admin, $deleteArticle);
 
         // add "theCreator" role ( this is you :) )
         // You can do everything that admin can do plus more (if You decide so)
