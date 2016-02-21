@@ -67,8 +67,9 @@ class ResetPasswordForm extends Model
 
         // password strength rule is determined by StrengthValidator 
         // presets are located in: vendor/kartik-v/yii2-password/presets.php
-        // NOTE: you should use SIMPLE rule because it doesn't require username and email validation
-        $strong = [['password'], StrengthValidator::className(), 'preset'=>'simple', 'userAttribute'=>'password'];
+        // NOTE: you should use custom rule because pwd reset doesn't require username and email validation
+        $strong = [['password'], StrengthValidator::className(), 'min' => 8, 'lower' => 2, 'upper' => 2, 
+            'digit' => 2, 'special' => 0, 'hasUser' => false, 'hasEmail' => false];
 
         // use normal yii rule
         $normal = ['password', 'string', 'min' => 6];
