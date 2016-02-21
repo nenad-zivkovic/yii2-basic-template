@@ -17,8 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-5 well bs-component">
 
         <p>
-            <?= Yii::t('app', 'If you have business inquiries or other questions, 
-                please fill out the following form to contact us. Thank you.'); ?>
+            <?= Yii::t('app', 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.'); ?>
         </p>
 
         <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
@@ -36,8 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => 
                     '<div class="row">
                         <div class="col-lg-4">{image}</div>
-                        <div class="col-lg-6">{input}</div>
-                    </div>'
+                        <div class="col-lg-8">{input}</div>
+                    </div>',
+                'options' => ['placeholder' => Yii::t('app', 'Enter verification code'),'class' => 'form-control'],
                 ]) 
             ?>
 
