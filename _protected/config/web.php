@@ -24,7 +24,6 @@ $config = [
             'bundles' => [
                 // we will use bootstrap css from our theme
                 'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [], // do not use yii default one
                 ],
             ],
         ],
