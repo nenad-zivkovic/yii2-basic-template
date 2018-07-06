@@ -26,7 +26,13 @@
     },
     "config": {
         "vendor-dir": "_protected/vendor",
-        "process-timeout": 1800
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "installer-paths":{
+                "npm-asset-library": "_protected/vendor/npm",
+                "bower-asset-library": "_protected/vendor/bower"
+            }
+        }
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -48,10 +54,6 @@
             "generateCookieValidationKey": [
                 "_protected/config/web.php"
             ]
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "_protected/vendor/npm",
-            "bower-asset-library": "_protected/vendor/bower"
         }
     }
 }
